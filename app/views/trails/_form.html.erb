@@ -1,24 +1,22 @@
 <%= form_for @trail do |f| %>
-  <%= f.label :name
-
-
-
-
-
-
-
-
-
-  # create_table "trails", force: :cascade do |t|
-  #   t.string "name"
-  #   t.string "nearest_city"
-  #   t.string "directions"
-  #   t.float "distance"
-  #   t.text "description"
-  #   t.string "features"
-  #   t.boolean "dog_friendly"
-  #   t.boolean "user_submitted"
-  #   t.integer "region_id"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :nearest_city, "Nearest City" %>
+  <%= f.text_field :nearest_city %><br>
+  <%= f.label :directions %>
+  <%= f.text_field :directions %><br>
+  <%= f.label :distance, "Trail Distance" %>
+  <%= f.number_field :distance %><br>
+  <%= f.label :description %>
+  <%= f.text_area :description %><br>
+  <%= f.label :features %>
+  <%= f.text_field :features %><br>
+  <%= f.label :dog_friendly %>
+  <%= f.check_box :dog_friendly %><br>
+  <%= f.label :region_id %>
+  <%= f.fields_for :region do |region_builder| %>
+    <%= region_builder.collection_select(:region_id, Region.all, :id, :name, :prompt => 'Select')  %><br>
+  <% end %>
+  <br><br>
+  <%= f.submit %>
+<% end %>

@@ -4,4 +4,6 @@ class Trail < ApplicationRecord
   belongs_to :region
   has_many :questions
   has_many :tips
+
+  accepts_nested_attributes_for :region
 end
