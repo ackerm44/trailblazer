@@ -1,1 +1,6 @@
-<%= @body_hash %>
+
+<% @trails.each do |trail| %>
+  <p><%= trail['name'] %></p>
+  <p>Lat: <%= trail['lat'] %></p>
+  <p>Long: <%= trail['lon'] %></p>
+<% end %>
