@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215162129) do
+ActiveRecord::Schema.define(version: 20180215165143) do
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20180215162129) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lists_trails", id: false, force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "trail_id"
+    t.index ["list_id"], name: "index_lists_trails_on_list_id"
+    t.index ["trail_id"], name: "index_lists_trails_on_trail_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -54,6 +61,13 @@ ActiveRecord::Schema.define(version: 20180215162129) do
     t.integer "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trails_users", id: false, force: :cascade do |t|
+    t.integer "trail_id"
+    t.integer "user_id"
+    t.index ["trail_id"], name: "index_trails_users_on_trail_id"
+    t.index ["user_id"], name: "index_trails_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

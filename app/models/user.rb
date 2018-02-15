@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :trails
+  has_and_belongs_to_many :trails
   has_many :lists
   has_many :regions, through: :trails
   has_many :questions
