@@ -2,3 +2,4 @@
 2.  Decide on some basic layouts for each page
 3.  Create new trail nested form
 4.  Work on Devise Authentication
+5.  Work on trailsapi hook up

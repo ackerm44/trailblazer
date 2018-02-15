@@ -33,6 +33,7 @@ gem 'active_model_serializers'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth-github'
+gem 'faraday'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
