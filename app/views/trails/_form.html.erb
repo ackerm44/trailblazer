@@ -14,9 +14,7 @@
   <%= f.label :dog_friendly %>
   <%= f.check_box :dog_friendly %><br>
   <%= f.label :region_id %>
-  <%= f.fields_for :region do |region_builder| %>
-    <%= region_builder.collection_select(:region_id, Region.all, :id, :name, :prompt => 'Select')  %><br>
-  <% end %>
+  <%= f.collection_select :region_id, Region.all, :id, :name, :prompt => true  %><br>
   <br><br>
   <%= f.submit %>
 <% end %>

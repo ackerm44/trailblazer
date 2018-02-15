@@ -14,6 +14,7 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.new(trail_params)
+    raise params.inspect
     if @trail.save
       redirect_to trails_path
     else

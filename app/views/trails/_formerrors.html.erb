@@ -1,0 +1,12 @@
+<% if @trail.errors.any? %>
+  <div id= "error_explanation" >
+    <h2>
+      <%= pluralize(@trail.errors.count, "error") %>
+      prohibited this trail from being saved: </h2>
+    <ul>
+      <% @trail.errors.full_messages.each do |message| %>
+        <li> <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
