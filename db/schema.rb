@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215175647) do
+ActiveRecord::Schema.define(version: 20180215210252) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20180215175647) do
     t.integer "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "trails_users", id: false, force: :cascade do |t|
