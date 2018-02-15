@@ -1,6 +1,7 @@
 class TrailsController < ApplicationController
 
   def index
+    @trails = Trail.all
   end
 
   def show
@@ -12,7 +13,12 @@ class TrailsController < ApplicationController
   end
 
   def create
-    @trail = Trail.new
+    @trail = Trail.new(trail_params)
+    if @trail.save
+      redirect_to trails_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -26,7 +32,7 @@ class TrailsController < ApplicationController
 
   private
   def trail_params
-    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, region: => [:region_id] )
+    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region => [:region_id] )
   end
 
 end
