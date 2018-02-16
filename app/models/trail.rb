@@ -5,6 +5,8 @@ class Trail < ApplicationRecord
   has_many :questions
   has_many :tips
 
+  validates :name, uniqueness: true
+
   accepts_nested_attributes_for :region
 
   def self.get_api_data

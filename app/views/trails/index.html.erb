@@ -4,11 +4,8 @@
   <h2><%= region.name %></h2>
   <ul>
     <% region.trails.each do |trail| %>
-      <li><%= trail.name %></li>
+      <li><%= link_to trail.name, trail_path(trail) %></li>
     <% end %>
   </ul>
   <hr>
 <% end %>
-
-
-<%= @trails %>

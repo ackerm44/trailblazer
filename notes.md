@@ -1,7 +1,12 @@
 2.  Decide on some basic layouts for each page
 4.  Work on Devise Authentication
-5.  Work on trailsapi hook up
-  - Find a way to take in long and lat and assign trail to region based on this info
-  - Find a way to integrate api trails and user submitted trails
-  -
-  6.  Consider removing features column
+6.  Consider removing features column
+7.  Organize trails index page
+8.  Link up each trail with show page for trail
+9.  Start implementing user specific views on trail show page
+  - User can save the trail to one of their lists
+  - User can post a comment about the trail
+  - User can ask a question about the trail
+  - User can post an answer to the question about the trail
+  - See if possible to put a map with pinpointed location
+10.  Fix api data on directions

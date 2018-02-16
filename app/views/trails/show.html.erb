@@ -1,6 +1,7 @@
 <h1><%= @trail.name %><h1>
 <h4>Nearest City: <%= @trail.nearest_city %></h4>
 <p>Directions: <em><%= @trail.directions %></em></p>
+<p>Trail length: <%= @trail.distance %></p>
 <p>Description: <%= @trail.description %></p>
-<p>Dog Friendly: <%= @trail.dog_friendly %></p>
-<h5><%= @trail.region.name %></h5>
+<p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
+<hr>
