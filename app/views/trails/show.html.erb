@@ -5,6 +5,22 @@
 <p>Description: <%= @trail.description %></p>
 <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
 <hr>
+
+<h4>Tips about this Trail</h4>
+<% @trail.tips.each do |tip| %>
+  <p><em>From user: <%= tip.user.username %></em><p>
+  <p><%= tip.comment %></p>
+<% end %>
+<br><br>
+<%= form_tag tips_path do %>
+  <%= text_field_tag ':tip[comment]' %><br>
+  <%= hidden_field_tag ':tip[user_id]', current_user.id %>
+  <%= hidden_field_tag ':tip[trail_id]', @trail.id %>
+  <%= submit_tag "Leave Tip" %>
+<% end %>
+
+<!-- Want this to be ajax so a user can create a tip and it posts without page refresh -->
+<hr>
 <!--Drop down for user lists here  -->
 <h4>Add Trail to a List</h4>
 <%= form_for @trail do |f| %>
@@ -13,6 +29,3 @@
   <%= f.submit "Save to List" %>
 <% end %>
 <hr>
-<h4>Leave a tip about this trail</h4>
-<%= form_for @tip do |f| %>
-<!-- Want this to be ajax so a user can create a tip and it posts without page refresh -->
