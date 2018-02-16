@@ -8,7 +8,19 @@ class Trail < ApplicationRecord
   accepts_nested_attributes_for :region
 
   def assign_region
-    puts trail
+    if self.longitude < -87
+      self.region = Region.find(5)
+    elsif self.longitude > -87 && self.latitude > 45.84
+      self.region = Region.find(6)
+    elsif self.longitude > -84.7 && self.latitude > 43.4 && self.latitude < 45.84
+      self.region = Region.find(2)
+    elsif self.longitude < -84.7 && self.latitude < 43.4
+      self.region = Region.find(3)
+    elsif self.longitude > -84.7 && self.latitude < 43.4
+      self.region = Region.find(4)
+    else
+      self.region = Region.find(1)
+    end
   end
 
 end

@@ -2,20 +2,13 @@
 <hr>
 <% @regions.each do |region| %>
   <h2><%= region.name %></h2>
-  <% region.trails.each do |trail| %>
-    <h3><%= trail.name %></h3>
-    <h4><%= trail.nearest_city %></h4>
-    <p><em><%= trail.directions %></em></p>
-    <p><%= trail.description %></p>
-  <% end %>
-
+  <ul>
+    <% region.trails.each do |trail| %>
+      <li><%= trail.name %></li>
+    <% end %>
+  </ul>
   <hr>
 <% end %>
 
 
-<% @trails.each do |trail| %>
-  <p><%= trail['name'] %></p>
-  <p>Lat: <%= trail['lat'] %></p>
-  <p>Long: <%= trail['lon'] %></p>
-  <p>Region: <%= assign_region(trail['lon']) %></p>
-<% end %>
+<%= @trails %>
