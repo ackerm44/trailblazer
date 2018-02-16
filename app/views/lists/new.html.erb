@@ -1,0 +1,9 @@
+<h1>Create a New List</h1>
+<%= form_for @list do |f| %>
+  <%= f.label :name, "List Name" %>
+  <%= f.text_field :name %><br>
+  <%= f.label :description, "List Description" %>
+  <%= f.text_field :description %><br>
+  <%= hidden_field_tag "list[user_id]", current_user.id %>
+  <%= f.submit %>
+<% end %>
