@@ -1,10 +1,13 @@
 <h1> All Trails </h1>
-<% @trails.each do |trail| %>
-  <h3><%= trail.name %></h3>
-  <h4><%= trail.nearest_city %></h4>
-  <p><em><%= trail.directions %></em></p>
-  <p><%= trail.description %></p>
-<% end %>
-
 <hr>
-<%= @body_hash %>
+<% @regions.each do |region| %>
+  <h2><%= region.name %></h2>
+  <% region.trails.each do |trail| %>
+    <h3><%= trail.name %></h3>
+    <h4><%= trail.nearest_city %></h4>
+    <p><em><%= trail.directions %></em></p>
+    <p><%= trail.description %></p>
+
+  <% end %>
+  <hr>
+<% end %>

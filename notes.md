@@ -1,5 +1,6 @@
-1.  Set up basic controllers for each model
 2.  Decide on some basic layouts for each page
-3.  Create new trail nested form
 4.  Work on Devise Authentication
 5.  Work on trailsapi hook up
+  - Find a way to take in long and lat and assign trail to region based on this info
+  - Find a way to integrate api trails and user submitted trails
+  - 
