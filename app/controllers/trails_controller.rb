@@ -3,18 +3,6 @@ class TrailsController < ApplicationController
 
   def index
     @regions ||= Region.all
-    @resp = Faraday.get "https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[state_cont]=michigan" do |req|
-      req.headers['x-mashape-key'] = ENV['TRAIL_API_KEY']
-      req.headers['accept'] = 'text/plain'
-      req.options.timeout = 10
-    end
-    body_hash = JSON.parse(@resp.body)
-    trails = body_hash["places"]
-    @trails = trails.map {|trail| Trail.new(name: trail['name'], nearest_city: trail['city'], description: trail['activities'][0]['description'], distance: trail['activities'][0]['length'], directions: trail['directions'], latitude: trail['lat'], longitude: trail['lon'], user_submitted: false, )}
-    @trails.each do |trail|
-      trail.assign_region
-    end
-    @trails.save
   end
 
   # require 'json'
