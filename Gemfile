@@ -34,6 +34,7 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth-github'
 gem 'faraday'
+gem 'jquery-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

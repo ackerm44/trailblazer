@@ -7,7 +7,15 @@
     <h4><%= trail.nearest_city %></h4>
     <p><em><%= trail.directions %></em></p>
     <p><%= trail.description %></p>
-
   <% end %>
+
   <hr>
+<% end %>
+
+
+<% @trails.each do |trail| %>
+  <p><%= trail['name'] %></p>
+  <p>Lat: <%= trail['lat'] %></p>
+  <p>Long: <%= trail['lon'] %></p>
+  <p>Region: <%= assign_region(trail['lon']) %></p>
 <% end %>
