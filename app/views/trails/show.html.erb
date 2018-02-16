@@ -5,3 +5,14 @@
 <p>Description: <%= @trail.description %></p>
 <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
 <hr>
+<!--Drop down for user lists here  -->
+<h4>Add Trail to a List</h4>
+<%= form_for @trail do |f| %>
+  <!-- User will select from a drop down of their saved lists, need to pass the trail id to the list -->
+  <%= f.collection_select :list_ids, List.all, :id, :name, :prompt => true %>
+  <%= f.submit "Save to List" %>
+<% end %>
+<hr>
+<h4>Leave a tip about this trail</h4>
+<%= form_for @tip do |f| %>
+<!-- Want this to be ajax so a user can create a tip and it posts without page refresh -->

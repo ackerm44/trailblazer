@@ -6,6 +6,7 @@ class TrailsController < ApplicationController
   end
 
   def show
+    @lists = current_user.lists
   end
 
   def new
