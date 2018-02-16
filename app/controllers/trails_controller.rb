@@ -7,6 +7,8 @@ class TrailsController < ApplicationController
 
   def show
     @lists = current_user.lists
+    @tips = Tip.new
+    @question = Question.new
   end
 
   def new

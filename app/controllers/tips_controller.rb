@@ -9,6 +9,8 @@ class TipsController < ApplicationController
   end
 
   def create
+    @tip = Tip.create(tip_params)
+    render json: @tip, status: 201
   end
 
   def edit
@@ -18,6 +20,11 @@ class TipsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def tip_params
+    params.require(:tip).permit(:comment, :user_id, :trail_id)
   end
 
 

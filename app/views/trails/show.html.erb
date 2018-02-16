@@ -6,20 +6,43 @@
 <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
 <hr>
 
-<h4>Tips about this Trail</h4>
-<% @trail.tips.each do |tip| %>
-  <p><em>From user: <%= tip.user.username %></em><p>
-  <p><%= tip.comment %></p>
-<% end %>
-<br><br>
-<%= form_tag tips_path do %>
-  <%= text_field_tag ':tip[comment]' %><br>
-  <%= hidden_field_tag ':tip[user_id]', current_user.id %>
-  <%= hidden_field_tag ':tip[trail_id]', @trail.id %>
-  <%= submit_tag "Leave Tip" %>
-<% end %>
+<div >
+  <h4>Tips about this Trail</h4>
+  <% @trail.tips.each do |tip| %>
+    <p><em>From user: <%= tip.user.username %></em><p>
+    <p><%= tip.comment %></p>
+  <% end %>
+  <p id="tip-user"></p>
+  <p id="tip-comment"></p>
+  <br><br>
 
-<!-- Want this to be ajax so a user can create a tip and it posts without page refresh -->
+  <%= form_tag tips_path,:id => 'tip-form' do %>
+    <%= text_field_tag 'tip[comment]' %><br>
+    <%= hidden_field_tag 'tip[user_id]', current_user.id %>
+    <%= hidden_field_tag 'tip[trail_id]', @trail.id %>
+    <%= submit_tag "Leave Tip" %>
+  <% end %>
+</div>
+<hr>
+<div>
+  <h4>Questions about this Trail</h4>
+  <% @trail.questions.each do |question| %>
+    <p><em>From user: <%= question.user.username %></em><p>
+    <p><%= question.title %></p>
+  <% end %>
+  <p id="question-user"></p>
+  <p id="question-title"></p>
+  <br><br>
+
+  <%= form_tag questions_path,:id => 'question-form' do %>
+    <%= text_field_tag 'question[title]' %><br>
+    <%= hidden_field_tag 'question[user_id]', current_user.id %>
+    <%= hidden_field_tag 'question[trail_id]', @trail.id %>
+    <%= submit_tag "Ask Question" %>
+  <% end %>
+
+</div>
+
 <hr>
 <!--Drop down for user lists here  -->
 <h4>Add Trail to a List</h4>
@@ -29,3 +52,27 @@
   <%= f.submit "Save to List" %>
 <% end %>
 <hr>
+
+<script type="text/javascript" charset="ut-8">
+  $(function() {
+    $('tip-form').on('submit', function(e) {
+      e.preventDefault();
+      let values = $(this).serialize();
+      let posting = $.post('/tips', values);
+      posting.done(function(data) {
+        // let user = User.find(data["user_id"])
+        // $("#tip-user").append(user.name)
+        // Need to post username as well.  JS doesn't have access to object
+        $("#tip-comment").append(data["comment"])
+      })
+    })
+    $('question-form').on('submit', function(e) {
+      e.preventDefault();
+      let questionValues = $(this).serialize();
+      let QuestionPosting = $.post('/questions', values);
+      QuestionPosting.done(function(data) {
+        ("#question-title").append(data["title"])
+      })
+    })
+  })
+</script>
