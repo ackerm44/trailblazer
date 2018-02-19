@@ -27,8 +27,11 @@
 <div>
   <h4>Questions about this Trail</h4>
   <% @trail.questions.each do |question| %>
-    <p><em>From user: <%= question.user.username %></em><p>
-    <p><%= question.title %></p>
+    <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong><p>
+    <% question.answers.each do |answer| %>
+      <p><%= answer.title %> - <%=answer.user.username %></p>
+    <% end %>
+
     <div id="answer">
       <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
         <%= f.text_field :title %>
@@ -36,8 +39,8 @@
         <%= f.hidden_field :question_id, :value => question.id %>
         <%= f.submit "Submit Answer" %>
       <% end %>
-      <p id="question-answer-<%= question.id %>"</p>
     </div>
+    <p id="question-answer-<%= question.id %>"</p>
   <% end %>
   <p id="question-user"></p>
   <p id="question-title"></p>
@@ -54,14 +57,16 @@
 </div>
 
 <hr>
-<!--Drop down for user lists here  -->
-<h4>Add Trail to a List</h4>
-<%= form_for @trail do |f| %>
-  <!-- User will select from a drop down of their saved lists, need to pass the trail id to the list -->
-  <%= f.collection_select :list_ids, List.all, :id, :name, :prompt => true %>
-  <%= f.submit "Save to List" %>
-<% end %>
-<hr>
+<aside>
+  <!--Drop down for user lists here  -->
+  <h4>Add Trail to a List</h4>
+  <%= form_for @trail do |f| %>
+    <!-- User will select from a drop down of their saved lists, need to pass the trail id to the list -->
+    <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
+    <%= f.submit "Save to List" %>
+  <% end %>
+  <hr>
+</aside>
 
 <script type="text/javascript" charset="ut-8">
   $(function() {
@@ -86,13 +91,16 @@
       });
     });
     $(`#answer-question`).on("submit", function(e) {
+
+      // Not finding the question-answer-question id on done
       e.preventDefault();
       let answerValues = $(this).serialize();
       let answerPosting = $.post('/answers', answerValues);
       answerPosting.done(function(data) {
-        console.log(data)
+        let user = "<%= @user %>"
+        $(`#question-answer-${data.question_id}`).append(`${data.title} - ${user}`)
       })
-      // let questionId = "<%= "
+
     })
   })
 </script>

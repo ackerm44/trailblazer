@@ -7,7 +7,7 @@ class Trail < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  accepts_nested_attributes_for :region
+  accepts_nested_attributes_for :region, :lists
 
   def self.get_api_data
     @resp = Faraday.get "https://trailapi-trailapi.p.mashape.com/?limit=500&q[activities_activity_type_name_eq]=hiking&q[state_cont]=michigan" do |req|

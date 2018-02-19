@@ -1,10 +1,26 @@
-<h1>Welcome, <%= current_user.username %></h1>
+<h1>Welcome, <%= current_user.username %>.</h1>
+
 
 <h2>Past Hikes</h2>
 
 
 <% current_user.lists.each do |list| %>
-  <%= list.name %>
+  <h2><%= list.name %></h2>
+  <ul>
+  <% list.trails.each do |trail| %>
+    <li><%= trail.name %></li>
+  <% end %>
+</ul>
 <% end %>
 <br>
-<%= link_to "Create a new List", new_list_path %>
+<%= link_to "Create a new List", new_list_path %><br>
+<hr>
+<h2>Answers to your Questions</h2>
+<% questions_with_answers(current_user).each do |question| %>
+  <h4><%= question.title %></h4>
+  <ul>
+    <% question.answers.each do |answer| %>
+      <li><%= answer.title %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -25,6 +25,8 @@ class ListsController < ApplicationController
   end
 
   def update
+    @list = List.find(params[:id])
+    @list.update(list_params)
   end
 
   def destroy
@@ -36,7 +38,7 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :description, :user_id)
+    params.require(:list).permit(:name, :description, :user_id, :trail_id)
   end
 
 end
