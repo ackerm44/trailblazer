@@ -2,12 +2,13 @@ class TrailsController < ApplicationController
   before_action :set_trail, only: [:show, :edit, :update, :destroy]
 
   def index
-    @regions ||= Region.all
+    @regions = Region.all
   end
 
   def show
     @lists = current_user.lists
-    @tips = Tip.new
+    @user = current_user.username
+    @tip = Tip.new
     @question = Question.new
   end
 
@@ -18,7 +19,6 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.new(trail_params)
-    #raise params.inspect
     if @trail.save
       redirect_to trails_path
     else

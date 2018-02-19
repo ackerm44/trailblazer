@@ -16,11 +16,11 @@
   <p id="tip-comment"></p>
   <br><br>
 
-  <%= form_tag tips_path,:id => 'tip-form' do %>
-    <%= text_field_tag 'tip[comment]' %><br>
-    <%= hidden_field_tag 'tip[user_id]', current_user.id %>
-    <%= hidden_field_tag 'tip[trail_id]', @trail.id %>
-    <%= submit_tag "Leave Tip" %>
+  <%= form_for @tip,:html => {:id => 'tip-form' } do |f| %>
+    <%= f.text_field :comment %><br>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :trail_id, :value => @trail.id %>
+    <%= f.submit "Leave Tip" %>
   <% end %>
 </div>
 <hr>
@@ -55,24 +55,25 @@
 
 <script type="text/javascript" charset="ut-8">
   $(function() {
-    $('tip-form').on('submit', function(e) {
+    $('#tip-form').submit(function(e) {
       e.preventDefault();
       let values = $(this).serialize();
       let posting = $.post('/tips', values);
       posting.done(function(data) {
-        // let user = User.find(data["user_id"])
-        // $("#tip-user").append(user.name)
-        // Need to post username as well.  JS doesn't have access to object
-        $("#tip-comment").append(data["comment"])
-      })
-    })
-    $('question-form').on('submit', function(e) {
+        let user = "<%= @user %>"
+        $("#tip-user").append(user)
+        $("#tip-comment").append(data.comment);
+      });
+    });
+    $('#question-form').on('submit', function(e) {
       e.preventDefault();
       let questionValues = $(this).serialize();
-      let QuestionPosting = $.post('/questions', values);
+      let QuestionPosting = $.post('/questions', questionValues);
       QuestionPosting.done(function(data) {
-        ("#question-title").append(data["title"])
-      })
-    })
+        let user = "<%= @user %>"
+        $("#question-user").append(user)
+        $("#question-title").append(data.title);
+      });
+    });
   })
 </script>
