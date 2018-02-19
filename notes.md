@@ -10,3 +10,10 @@
 10.  Fix api data on directions
 13. Mark questions/answers on welcome page as read?
 14. Search feature to hit api for radius around city input
+
+
+
+A. Refactor trail show view
+   - Separate out into partials
+   - Separate out js
+B. 

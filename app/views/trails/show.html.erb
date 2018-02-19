@@ -11,8 +11,8 @@
 <p>Trail length: <%= @trail.distance %></p>
 <p>Description: <%= @trail.description %></p>
 <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
-<%= creating_user_options(current_user, @trail) %>
-
+<%= user_trail_edit(current_user, @trail) %>
+<%= user_trail_delete(current_user, @trail) %>
 <hr>
 
 <div id="tips" >
@@ -77,7 +77,7 @@
   <hr>
 </aside>
 
-<script type="text/javascript" charset="ut-8">
+<script type="text/javascript" charset="utf-8">
 
 
   $(function() {
