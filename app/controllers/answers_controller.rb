@@ -8,6 +8,8 @@ class AnswersController < ApplicationController
   end
 
   def create
+    @answer = Answer.create(answer_params)
+    render json: @answer, status: 201
   end
 
   def edit
@@ -18,5 +20,11 @@ class AnswersController < ApplicationController
 
   def destroy
   end
-  
+
+  private
+  def answer_params
+    params.require(:answer).permit(:title, :user_id, :question_id)
+  end
+
+
 end

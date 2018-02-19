@@ -10,6 +10,7 @@ class TrailsController < ApplicationController
     @user = current_user.username
     @tip = Tip.new
     @question = Question.new
+    @answer = Answer.new
   end
 
   def new

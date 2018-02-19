@@ -29,9 +29,19 @@
   <% @trail.questions.each do |question| %>
     <p><em>From user: <%= question.user.username %></em><p>
     <p><%= question.title %></p>
+    <div id="answer">
+      <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
+        <%= f.text_field :title %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :question_id, :value => question.id %>
+        <%= f.submit "Submit Answer" %>
+      <% end %>
+      <p id="question-answer-<%= question.id %>"</p>
+    </div>
   <% end %>
   <p id="question-user"></p>
   <p id="question-title"></p>
+
   <br><br>
 
   <%= form_tag questions_path,:id => 'question-form' do %>
@@ -75,5 +85,14 @@
         $("#question-title").append(data.title);
       });
     });
+    $(`#answer-question`).on("submit", function(e) {
+      e.preventDefault();
+      let answerValues = $(this).serialize();
+      let answerPosting = $.post('/answers', answerValues);
+      answerPosting.done(function(data) {
+        console.log(data)
+      })
+      // let questionId = "<%= "
+    })
   })
 </script>
