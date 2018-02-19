@@ -2,7 +2,7 @@ module TrailsHelper
 
   def creating_user_options(current_user, trail)
     if current_user == @trail.users.first && @trail.user_submitted?
-      '<%= link_to "Edit Trail", edit_trail_path(@trail) %>'
+      link_to "Edit Trail", edit_trail_path(@trail)
     end
   end
 
@@ -12,7 +12,7 @@ module TrailsHelper
     if trail.user_submitted == true
       trail.users.first.username
     else
-      ""
+      "System Submitted"
     end
   end
 
