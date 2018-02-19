@@ -19,6 +19,7 @@ class TrailsController < ApplicationController
   end
 
   def create
+
     @trail = Trail.new(trail_params)
     if @trail.save
       redirect_to trails_path
@@ -31,6 +32,7 @@ class TrailsController < ApplicationController
   end
 
   def update
+    
     if @trail.update(trail_params)
       redirect_to trail_path(@trail)
     else

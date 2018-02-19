@@ -9,4 +9,11 @@ module TrailsHelper
       "No"
     end
   end
+
+  def display_hiked_before(current_user)
+    if @trail.users.include?(current_user)
+      "Marked as Hiked"
+    end
+  end
+
 end

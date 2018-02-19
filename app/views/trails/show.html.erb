@@ -1,5 +1,10 @@
 <h1><%= @trail.name %></h1>
-<a href="#" id="hiked-before">I have hiked this trail before</a>
+<%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
+  <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
+  <%= submit_tag "Mark as Hiked" %>
+<% end %>
+<h4 id="hiked-before-display"><%= display_hiked_before(current_user) %></h4>
+
 <h4>Nearest City: <%= @trail.nearest_city %></h4>
 <p>Directions: <em><%= @trail.directions %></em></p>
 <p>Trail length: <%= @trail.distance %></p>
@@ -70,6 +75,8 @@
 </aside>
 
 <script type="text/javascript" charset="ut-8">
+
+
   $(function() {
     $('#tip-form').submit(function(e) {
       e.preventDefault();
@@ -98,9 +105,26 @@
       let answerValues = $(this).serialize();
       let answerPosting = $.post('/answers', answerValues);
       answerPosting.done(function(data) {
-        let user = "<%= @user %>"
+        let user = "<%= @user %>";
         $(`#question-answer-${data.question_id}`).append(`${data.title} - ${user}`)
-      })
+      });
+    });
+    if ($("#hiked-before-display").text() == "Marked as Hiked") {
+      $("#hiked-before-form").hide();
+    };
+
+    $("#hiked-before-form").on("submit", function(e) {
+      e.preventDefault();
+      let trail_user = "<%= current_user.id %>";
+      let trail_id = "<%= @trail.id %>"
+      $.ajax(`/trails/${trail_id}`, {
+        type: 'POST',
+        data: { _method: 'PATCH', user_id: trail_user },
+        success: function(data) {
+          $("#hiked-before-form").hide();
+
+        }
+      });
 
     })
   })
