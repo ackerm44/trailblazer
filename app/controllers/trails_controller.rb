@@ -22,7 +22,6 @@ class TrailsController < ApplicationController
   end
 
   def create
-    binding.pry
     @trail = Trail.new(trail_params)
     if @trail.save
       redirect_to trails_path
@@ -44,6 +43,10 @@ class TrailsController < ApplicationController
   end
 
   def destroy
+    if current_user == @trail.users.first && @trail.user_submitted?
+      @trail.destroy
+      redirect_to trails_path
+    end
   end
 
   private

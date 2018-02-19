@@ -11,6 +11,8 @@
 <p>Trail length: <%= @trail.distance %></p>
 <p>Description: <%= @trail.description %></p>
 <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
+<%= creating_user_options(current_user, @trail) %>
+
 <hr>
 
 <div id="tips" >
