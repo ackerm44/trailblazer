@@ -9,7 +9,12 @@ class Trail < ApplicationRecord
 
   accepts_nested_attributes_for :region, :lists
 
+  def self.search_by_name(query)
+    self.select {|t| t.name.downcase.include?(query)}
+  end
+
   def search_api
+
   end
 
   def assign_region

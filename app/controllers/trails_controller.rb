@@ -3,6 +3,9 @@ class TrailsController < ApplicationController
 
   def index
     @regions = Region.all
+    if !params[:query].nil?
+      @trails = Trail.search_by_name(params[:query])
+    end
   end
 
   def show

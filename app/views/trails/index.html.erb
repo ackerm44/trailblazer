@@ -1,9 +1,12 @@
 <h1> All Trails </h1>
 <hr>
-<%= form_tag trails_path do %>
+<%= form_tag trails_path, method: :get do %>
   <strong>Search by Trail Name: </strong></br>
   <%= text_field_tag :query, params[:query], placeholder: "Name or Part of Name" %>
   <%= submit_tag "Search" %>
+<% end %>
+<% @trails.each do |trail| %>
+  <%= link_to trail.name, trail_path(trail) %>
 <% end %>
 <hr>
 <% @regions.each do |region| %>
