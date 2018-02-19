@@ -8,6 +8,5 @@
   - User can post an answer to the question about the trail (Can post put done can't find the p tag to append)
   - See if possible to put a map with pinpointed location
 10.  Fix api data on directions
-11.  Create clickable link or checkbox that says "I have hiked this trail" which will then save to the users "past hikes list"
 13. Mark questions/answers on welcome page as read?
 14. Search feature to hit api for radius around city input

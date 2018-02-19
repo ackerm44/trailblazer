@@ -25,7 +25,9 @@
   <h4><%= question.title %></h4>
   <ul>
     <% question.answers.each do |answer| %>
-      <li><%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %></li>
+      <li>
+        <%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %>
+      </li>
     <% end %>
   </ul>
 <% end %>
