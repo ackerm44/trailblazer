@@ -31,7 +31,6 @@ class TrailsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @trail.update(trail_params)
       redirect_to trail_path(@trail)
     else
@@ -48,7 +47,7 @@ class TrailsController < ApplicationController
   end
 
   def trail_params
-    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :list_ids)
+    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :list_ids, :user_ids)
   end
 
 end
