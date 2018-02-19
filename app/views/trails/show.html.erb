@@ -1,4 +1,5 @@
 <h1><%= @trail.name %></h1>
+<p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
 <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
   <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
   <%= submit_tag "Mark as Hiked" %>
@@ -37,7 +38,7 @@
     <% question.answers.each do |answer| %>
       <p><%= answer.title %> - <%=answer.user.username %></p>
     <% end %>
-
+    <p id="question-answer-<%= question.id %>"</p>
     <div id="answer">
       <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
         <%= f.text_field :title %>
@@ -46,7 +47,7 @@
         <%= f.submit "Submit Answer" %>
       <% end %>
     </div>
-    <p id="question-answer-<%= question.id %>"</p>
+
   <% end %>
   <p id="question-user"></p>
   <p id="question-title"></p>
@@ -84,7 +85,7 @@
       let posting = $.post('/tips', values);
       posting.done(function(data) {
         let user = "<%= @user %>"
-        $("#tip-user").append(user)
+        $("#tip-user").append(`From user: ${user}`)
         $("#tip-comment").append(data.comment);
       });
     });

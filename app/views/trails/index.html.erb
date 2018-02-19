@@ -5,8 +5,10 @@
   <%= text_field_tag :query, params[:query], placeholder: "Name or Part of Name" %>
   <%= submit_tag "Search" %>
 <% end %>
-<% @trails.each do |trail| %>
-  <%= link_to trail.name, trail_path(trail) %>
+<% if @trails %>
+  <% @trails.each do |trail| %>
+    <%= link_to trail.name, trail_path(trail) %>
+  <% end %>
 <% end %>
 <hr>
 <% @regions.each do |region| %>

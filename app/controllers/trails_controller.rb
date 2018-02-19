@@ -22,7 +22,7 @@ class TrailsController < ApplicationController
   end
 
   def create
-
+    binding.pry
     @trail = Trail.new(trail_params)
     if @trail.save
       redirect_to trails_path
@@ -52,7 +52,7 @@ class TrailsController < ApplicationController
   end
 
   def trail_params
-    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :list_ids, :user_ids)
+    params.require(:trail).permit(:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :user_submitted, :list_ids, :user_ids)
   end
 
 end

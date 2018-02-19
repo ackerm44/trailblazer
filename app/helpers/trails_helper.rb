@@ -1,5 +1,13 @@
 module TrailsHelper
 
+  def submitting_user(trail)
+    if trail.user_submitted == true
+      trail.users.first.username
+    else
+      ""
+    end
+  end
+
   def display_dog_friendly(trail)
     if trail.dog_friendly.nil?
       "Unknown"
