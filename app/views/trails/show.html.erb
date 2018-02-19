@@ -116,10 +116,10 @@
     $("#hiked-before-form").on("submit", function(e) {
       e.preventDefault();
       let trail_user = "<%= current_user.id %>";
-      let trail_id = "<%= @trail.id %>"
+      let trail_id = "<%= @trail.id %>";
       $.ajax(`/trails/${trail_id}`, {
         type: 'POST',
-        data: { _method: 'PATCH', user_id: trail_user },
+        data: { _method: 'PATCH', 'trail[user_ids]': trail_user },
         success: function(data) {
           $("#hiked-before-form").hide();
 

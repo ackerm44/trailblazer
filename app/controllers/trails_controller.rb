@@ -32,7 +32,7 @@ class TrailsController < ApplicationController
   end
 
   def update
-    
+    # binding.pry
     if @trail.update(trail_params)
       redirect_to trail_path(@trail)
     else
