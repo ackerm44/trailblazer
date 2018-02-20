@@ -13,9 +13,20 @@ class Trail < ApplicationRecord
     self.select {|t| t.name.downcase.include?(query)}
   end
 
-  def search_api
-
+  def self.search_by_city(city_query)
+    self.select {|t| t.nearest_city.downcase.include?(city_query)}
   end
+
+  # def self.search_api(params)
+  #   @resp = Faraday.get "https://trailapi-trailapi.p.mashape.com/?limit=500&q[activities_activity_type_name_eq]=hiking&q[state_cont]=michigan" do |req|
+  #     req.params['q[city_cont]'] = params
+  #     req.headers['x-mashape-key'] = ENV['TRAIL_API_KEY']
+  #     req.headers['accept'] = 'text/plain'
+  #     req.options.timeout = 10
+  #   end
+  #   body_hash = JSON.parse(@resp.body)
+  #   trails = body_hash["places"]
+  # end
 
   def assign_region
     if self.longitude < -87

@@ -5,6 +5,12 @@
   <%= text_field_tag :query, params[:query], placeholder: "Name or Part of Name" %>
   <%= submit_tag "Search" %>
 <% end %>
+<%= form_tag trails_path, method: :get do %>
+  <strong>Search by City: </strong></br>
+  <%= text_field_tag :city_query, params[:city_query], placeholder: "City" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <% if @trails %>
   <% @trails.each do |trail| %>
     <%= link_to trail.name, trail_path(trail) %>

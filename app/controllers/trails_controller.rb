@@ -5,6 +5,9 @@ class TrailsController < ApplicationController
     @regions = Region.all
     if !params[:query].nil?
       @trails = Trail.search_by_name(params[:query])
+    elsif !params[:city_query].nil?
+      @trails = Trail.search_by_city(params[:city_query])
+
     end
   end
 
