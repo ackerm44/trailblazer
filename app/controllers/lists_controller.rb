@@ -1,9 +1,8 @@
 class ListsController < ApplicationController
-  # All routes per current_user
   before_action :set_list, :check_current_user, only: [:show, :edit, :update, :destroy]
 
-  def index
-  end
+  # def index
+  # end
 
   def show
   end

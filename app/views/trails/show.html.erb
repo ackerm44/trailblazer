@@ -36,11 +36,11 @@
 <div id="questions">
   <h4>Questions about this Trail</h4>
   <% @trail.questions.each do |question| %>
-    <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong><p>
+    <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong>
+      <%= user_question_delete(current_user, question) %></p>
     <% question.answers.each do |answer| %>
-      <p><%= answer.title %> - <%=answer.user.username %></p>
-      <%= user_answer_edit(current_user, answer) %>
-      <%= user_answer_delete(current_user, answer) %>
+      <p><%= answer.title %> - <%=answer.user.username %>
+      <%= user_answer_delete(current_user, answer) %></p>
     <% end %>
     <p id="question-answer-<%= question.id %>"</p>
     <div id="answer">
