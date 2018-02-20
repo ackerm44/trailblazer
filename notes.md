@@ -6,7 +6,9 @@
 8.  See if possible to put a map with pinpointed location
 10. Fix api data on directions
 13. Mark questions/answers on welcome page as read?
-
+14. Fix up views with ajax postings
+15. Create a next button for trail show
+16. Put data somewhere about other users trail activity
 
 
 A. Refactor trail show view

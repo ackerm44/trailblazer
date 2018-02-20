@@ -1,11 +1,18 @@
 <h1><%= @trail.name %></h1>
+
+<%= render 'formerrors' %>
+
+<!-- Submitted by  -->
 <p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
+
+<!-- Either mark the trail as hiked or show text saying Hiked  -->
 <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
   <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
   <%= submit_tag "Mark as Hiked" %>
 <% end %>
 <h4 id="hiked-before-display"><%= display_hiked_before(current_user) %></h4>
 
+<!-- STAYS: Trail Display Information  -->
 <h4>Nearest City: <%= @trail.nearest_city %></h4>
 <p>Directions: <em><%= @trail.directions %></em></p>
 <p>Trail length: <%= @trail.distance %></p>
@@ -15,24 +22,15 @@
 <%= user_trail_delete(current_user, @trail) %>
 <hr>
 
+
+<!-- Tips indexing and new tip form  -->
 <div id="tips" >
   <h4>Tips about this Trail</h4>
-  <% @trail.tips.each do |tip| %>
-    <p><em>From user: <%= tip.user.username %></em><p>
-    <p><%= tip.comment %></p>
-  <% end %>
-  <p id="tip-user"></p>
-  <p id="tip-comment"></p>
-  <br><br>
-
-  <%= form_for @tip,:html => {:id => 'tip-form' } do |f| %>
-    <%= f.text_field :comment %><br>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :trail_id, :value => @trail.id %>
-    <%= f.submit "Leave Tip" %>
-  <% end %>
+  <%= render 'tips/index_and_form' %>
 </div>
 <hr>
+
+<!-- Questions indexing and new tip form  -->
 <div id="questions">
   <h4>Questions about this Trail</h4>
   <% @trail.questions.each do |question| %>
@@ -68,11 +66,10 @@
 </div>
 
 <hr>
+<!-- Add trail to List -->
 <aside>
-  <!--Drop down for user lists here  -->
   <h4>Add Trail to a List</h4>
   <%= form_for @trail do |f| %>
-    <!-- User will select from a drop down of their saved lists, need to pass the trail id to the list -->
     <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
     <%= f.submit "Save to List" %>
   <% end %>
@@ -89,8 +86,8 @@
       let posting = $.post('/tips', values);
       posting.done(function(data) {
         let user = "<%= @user %>"
-        $("#tip-user").append(`From user: ${user}`)
-        $("#tip-comment").append(data.comment);
+        $("#tip-comment").append(`From user: ${user} - ${data.comment} `)
+        // $("#tip-comment").append(data.comment);
       });
     });
     $('#question-form').on('submit', function(e) {

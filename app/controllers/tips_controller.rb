@@ -22,6 +22,7 @@ class TipsController < ApplicationController
   # end
 
   def destroy
+    @tip.destroy
   end
 
   private

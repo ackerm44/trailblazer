@@ -1,0 +1,14 @@
+<% @trail.tips.each do |tip| %>
+  <p><em>From user: <%= tip.user.username %> </em><%= tip.comment %>
+  <%= user_tip_delete(current_user, tip) %></p>
+<% end %>
+<p id="tip-user"></p>
+<p id="tip-comment"></p>
+<br><br>
+
+<%= form_for @tip,:html => {:id => 'tip-form' } do |f| %>
+  <%= f.text_field :comment %><br>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :trail_id, :value => @trail.id %>
+  <%= f.submit "Leave Tip" %>
+<% end %>
