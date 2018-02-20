@@ -33,101 +33,14 @@
 <!-- Questions indexing and new tip form  -->
 <div id="questions">
   <h4>Questions about this Trail</h4>
-  <% @trail.questions.each do |question| %>
-    <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong>
-      <%= user_question_delete(current_user, question) %></p>
-    <% question.answers.each do |answer| %>
-      <p><%= answer.title %> - <%=answer.user.username %>
-      <%= user_answer_delete(current_user, answer) %></p>
-    <% end %>
-    <p id="question-answer-<%= question.id %>"</p>
-    <div id="answer">
-      <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
-        <%= f.text_field :title %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :question_id, :value => question.id %>
-        <%= f.submit "Submit Answer" %>
-      <% end %>
-    </div>
-
-  <% end %>
-  <p id="question-user"></p>
-  <p id="question-title"></p>
-
-  <br><br>
-
-  <%= form_tag questions_path,:id => 'question-form' do %>
-    <%= text_field_tag 'question[title]' %><br>
-    <%= hidden_field_tag 'question[user_id]', current_user.id %>
-    <%= hidden_field_tag 'question[trail_id]', @trail.id %>
-    <%= submit_tag "Ask Question" %>
-  <% end %>
-
+  <%= render 'questions/index_and_form' %>
 </div>
-
 <hr>
+
 <!-- Add trail to List -->
-<aside>
-  <h4>Add Trail to a List</h4>
-  <%= form_for @trail do |f| %>
-    <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
-    <%= f.submit "Save to List" %>
-  <% end %>
-  <hr>
-</aside>
-
-<script type="text/javascript" charset="utf-8">
-
-
-  $(function() {
-    $('#tip-form').submit(function(e) {
-      e.preventDefault();
-      let values = $(this).serialize();
-      let posting = $.post('/tips', values);
-      posting.done(function(data) {
-        let user = "<%= @user %>"
-        $("#tip-comment").append(`From user: ${user} - ${data.comment} `)
-        // $("#tip-comment").append(data.comment);
-      });
-    });
-    $('#question-form').on('submit', function(e) {
-      e.preventDefault();
-      let questionValues = $(this).serialize();
-      let QuestionPosting = $.post('/questions', questionValues);
-      QuestionPosting.done(function(data) {
-        let user = "<%= @user %>"
-        $("#question-user").append(user)
-        $("#question-title").append(data.title);
-      });
-    });
-    $(`#answer-question`).on("submit", function(e) {
-
-      // Not finding the question-answer-question id on done
-      e.preventDefault();
-      let answerValues = $(this).serialize();
-      let answerPosting = $.post('/answers', answerValues);
-      answerPosting.done(function(data) {
-        let user = "<%= @user %>";
-        $(`#question-answer-${data.question_id}`).append(`${data.title} - ${user}`)
-      });
-    });
-    if ($("#hiked-before-display").text() == "Marked as Hiked") {
-      $("#hiked-before-form").hide();
-    };
-
-    $("#hiked-before-form").on("submit", function(e) {
-      e.preventDefault();
-      let trail_user = "<%= current_user.id %>";
-      let trail_id = "<%= @trail.id %>";
-      $.ajax(`/trails/${trail_id}`, {
-        type: 'POST',
-        data: { _method: 'PATCH', 'trail[user_ids]': trail_user },
-        success: function(data) {
-          $("#hiked-before-form").hide();
-
-        }
-      });
-
-    })
-  })
-</script>
+<h4>Add Trail to a List</h4>
+<%= form_for @trail do |f| %>
+  <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
+  <%= f.submit "Save to List" %>
+<% end %>
+<hr>

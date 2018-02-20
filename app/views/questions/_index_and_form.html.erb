@@ -1,0 +1,29 @@
+<% @trail.questions.each do |question| %>
+  <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong>
+    <%= user_question_delete(current_user, question) %></p>
+  <% question.answers.each do |answer| %>
+    <p><%= answer.title %> - <%=answer.user.username %>
+    <%= user_answer_delete(current_user, answer) %></p>
+  <% end %>
+  <p id="question-answer-<%= question.id %>"</p>
+  <div id="answer">
+    <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
+      <%= f.text_field :title %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :question_id, :value => question.id %>
+      <%= f.submit "Submit Answer" %>
+    <% end %>
+  </div>
+
+<% end %>
+<p id="question-user"></p>
+<p id="question-title"></p>
+
+<br><br>
+
+<%= form_tag questions_path,:id => 'question-form' do %>
+  <%= text_field_tag 'question[title]' %><br>
+  <%= hidden_field_tag 'question[user_id]', current_user.id %>
+  <%= hidden_field_tag 'question[trail_id]', @trail.id %>
+  <%= submit_tag "Ask Question" %>
+<% end %>

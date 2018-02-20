@@ -9,7 +9,8 @@
 14. Fix up views with ajax postings
 15. Create a next button for trail show
 16. Put data somewhere about other users trail activity
-
+17. Answer is still occasionally rendering json only
+18. trails js file not reading username properly
 
 A. Refactor trail show view
    - Separate out into partials
