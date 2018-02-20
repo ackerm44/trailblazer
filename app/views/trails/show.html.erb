@@ -39,6 +39,8 @@
     <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong><p>
     <% question.answers.each do |answer| %>
       <p><%= answer.title %> - <%=answer.user.username %></p>
+      <%= user_answer_edit(current_user, answer) %>
+      <%= user_answer_delete(current_user, answer) %>
     <% end %>
     <p id="question-answer-<%= question.id %>"</p>
     <div id="answer">

@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   # All routes per current_user
-  before_action :set_user
+  before_action :set_list, :check_current_user, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -25,16 +25,23 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = List.find(params[:id])
     @list.update(list_params)
   end
 
   def destroy
+
   end
 
   private
-  def set_user
-    @user = current_user
+  def set_list
+    @list = List.find(params[:id])
+  end
+
+  def check_current_user
+    if current_user != @list.user
+      redirect_to root_path
+      #Enter an error message????
+    end
   end
 
   def list_params

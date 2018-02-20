@@ -21,7 +21,7 @@
   <div id="region-<%=region.id %>">
     <h2 ><%= region.name %></h2>
     <ul>
-      <% region.trails.each do |trail| %>
+      <% region.trails.order(:name).each do |trail| %>
         <li><%= link_to trail.name, trail_path(trail) %></li>
       <% end %>
     </ul>
