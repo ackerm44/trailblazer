@@ -13,14 +13,14 @@ class AnswersController < ApplicationController
     render json: @answer, status: 201
   end
 
-  def edit
-  end
-
-  def update
-    if @answer.update(answer_params)
-      redirect_to trail_path(@answer.trail)
-    end
-  end
+  # def edit
+  # end
+  #
+  # def update
+  #   if @answer.update(answer_params)
+  #     redirect_to trail_path(@answer.trail)
+  #   end
+  # end
 
   def destroy
     @answer.destroy

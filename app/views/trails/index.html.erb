@@ -18,8 +18,8 @@
 <% end %>
 <hr>
 <% @regions.each do |region| %>
-  <div id="region-<%=region.id %>">
-    <h2 ><%= region.name %></h2>
+  <div>
+    <h2 id="region-<%=region.id %>" ><%= region.name %></h2>
     <ul>
       <% region.trails.order(:name).each do |trail| %>
         <li><%= link_to trail.name, trail_path(trail) %></li>
