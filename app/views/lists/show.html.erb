@@ -1,0 +1,7 @@
+<h1><%= @list.name %></h1>
+<h4><%= @list.description %></h4>
+<ul>
+  <% @list.trails.each do |trail| %>
+    <li><%= link_to trail.name, trail_path(trail) %></li>
+  <% end %>
+</ul>
