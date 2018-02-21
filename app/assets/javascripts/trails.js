@@ -48,17 +48,10 @@ function answerFormSubmit(form) {
   });
 }
 
-$(function() {
-
-  // $("#hiked-before-form").on("submit", function(e) {
-  //   e.preventDefault();
-  //   let trail_user = "<%= @user %>";
-  //   $.ajax(`/trails/${trail_id}`, {
-  //     type: 'POST',
-  //     data: { _method: 'PATCH', 'trail[user_ids]': trail_user },
-  //     success: function(data) {
-  //       $("#hiked-before-form").hide();
-  //     }
-  //   });
-  // })
-})
+function hikedBeforeSubmit(form) {
+  let hikedBeforeValues = $(form).serialize();
+  let hikedBeforePosting = $.post($(form).attr("action"), hikedBeforeValues);
+  hikedBeforePosting.done(function(data) {
+    $("#hiked-before-form").hide();
+  });
+}
