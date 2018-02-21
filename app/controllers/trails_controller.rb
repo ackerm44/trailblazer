@@ -14,9 +14,9 @@ class TrailsController < ApplicationController
   def show
     @lists = current_user.lists
     @user = current_user.username
-    @tip = Tip.new
-    @question = Question.new
-    @answer = Answer.new
+    
+    # @question = Question.new
+    # @answer = Answer.new
   end
 
   def new

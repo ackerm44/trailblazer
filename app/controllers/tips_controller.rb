@@ -11,7 +11,6 @@ class TipsController < ApplicationController
 
   def create
     @tip = Tip.create(tip_params)
-    @user = @tip.user.username
     render json: @tip, status: 201
   end
 

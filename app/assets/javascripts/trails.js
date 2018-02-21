@@ -1,24 +1,24 @@
 $(document).ready(function() {
   attachListeners();
-
-})
+});
 
 function attachListeners() {
-  $("#tip-form").on('submit', () => tipFormSubmit());
+  $("#tip-form").submit(function(e) {
+    e.preventDefault();
+    tipFormSubmit(this);
+  });
 
+  $("#question-form").submit(function(e) {
+    e.preventDefault();
+  })
 }
 
-function tipFormSubmit() {
-  $('#tip-form').submit(function(e) {
-    e.preventDefault();
-    let values = $(this).serialize();
+function tipFormSubmit(form) {
+    let values = $(form).serialize();
     let posting = $.post('/tips', values);
     posting.done(function(data) {
-      let user = "<%= current_user.username %>"
-      $("#tip-comment").append(`From user: ${user} - ${data.comment} `)
-      // $("#tip-comment").append(data.comment);
+      $("#tip-comment").append(`${data.comment} - ${data.user.username} `);
     });
-  });
 }
 
 
@@ -28,8 +28,6 @@ $(function() {
     let questionValues = $(this).serialize();
     let QuestionPosting = $.post('/questions', questionValues);
     QuestionPosting.done(function(data) {
-      let user = "<%= @user %>"
-      $("#question-user").append(user)
       $("#question-title").append(data.title);
     });
   });
@@ -40,24 +38,22 @@ $(function() {
     let answerValues = $(this).serialize();
     let answerPosting = $.post('/answers', answerValues);
     answerPosting.done(function(data) {
-      let user = "<%= current_user.username %>";
-      $(`#question-answer-${data.question_id}`).append(`${data.title} - ${user}`)
+      $(`#question-answer-${data.question_id}`).append(`${data.title}`)
     });
   });
   if ($("#hiked-before-display").text() == "Marked as Hiked") {
     $("#hiked-before-form").hide();
   };
 
-  $("#hiked-before-form").on("submit", function(e) {
-    e.preventDefault();
-    let trail_user = "<%= current_user.id %>";
-    let trail_id = "<%= @trail.id %>";
-    $.ajax(`/trails/${trail_id}`, {
-      type: 'POST',
-      data: { _method: 'PATCH', 'trail[user_ids]': trail_user },
-      success: function(data) {
-        $("#hiked-before-form").hide();
-      }
-    });
-  })
+  // $("#hiked-before-form").on("submit", function(e) {
+  //   e.preventDefault();
+  //   let trail_user = "<%= @user %>";
+  //   $.ajax(`/trails/${trail_id}`, {
+  //     type: 'POST',
+  //     data: { _method: 'PATCH', 'trail[user_ids]': trail_user },
+  //     success: function(data) {
+  //       $("#hiked-before-form").hide();
+  //     }
+  //   });
+  // })
 })
