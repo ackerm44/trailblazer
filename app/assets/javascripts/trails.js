@@ -1,5 +1,9 @@
 $(document).ready(function() {
   attachListeners();
+
+  if ($("#hiked-before-display").html() == "Marked as Hiked") {
+    $("#hiked-before-form").css("display", "none");
+  };
 });
 
 function attachListeners() {
@@ -53,5 +57,6 @@ function hikedBeforeSubmit(form) {
   let hikedBeforePosting = $.post($(form).attr("action"), hikedBeforeValues);
   hikedBeforePosting.done(function(data) {
     $("#hiked-before-form").hide();
+    $("#hiked-before-display").html("Marked as Hiked"); 
   });
 }
