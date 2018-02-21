@@ -3,6 +3,8 @@ class TipsController < ApplicationController
   before_action :set_tip, :check_current_user, only: [:destroy]
 
   def index
+    @tips = current_user.tips
+    render json: @tips
   end
 
   def new

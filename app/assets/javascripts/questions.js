@@ -1,19 +1,16 @@
 $(document).ready(function() {
-  console.log('hi')
   attachQuestionListener();
 })
 
 
 function attachQuestionListener() {
   $(document).on('click', "#next-question", function() {
-     console.log('yes')
     displayNextQuestion(this);
   })
 }
 
 function displayNextQuestion(button) {
   let id = $(button).attr("data-id")
-  console.log(id)
   $.get(`/questions/${id}/next`, function(data) {
     $("#question-show").html("")
     let newQuestion = new Question(data);

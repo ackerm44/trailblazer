@@ -3,10 +3,30 @@ $(document).ready(function() {
 })
 
 function attachTipListeners() {
-  $("#next-tip").on("click", function() {
-    let id = $(this).attr('data-id')
-    $.get(`/tips/${id}/next`, function(data) {
-      $("#user-tip").html(data.comment)
+  $("#get-user-tips").on("click", function() {
+    $.get('/tips', function(tips) {
+      $('#user-tips').html("<h2>Your Tips You've Written: </h2>");
+      tips.forEach((tip) => {
+        let newTip = new Tip(tip);
+        let tipHtml = newTip.formatIndex();
+        $("#user-tips").append("<ul>" + tipHtml + "</ul>");
+      })
     })
   })
+}
+
+function Tip(data) {
+  this.comment = data.comment;
+  this.trail_name = data.trail.name;
+  this.trail_id = data.trail_id;
+}
+
+Tip.prototype.formatIndex = function() {
+  let tipHtml = `
+  <li>
+  ${this.comment}
+  - <a href="/trails/${this.trail_id}">${this.trail_name}</a>
+  </li>
+  `
+  return tipHtml;
 }
