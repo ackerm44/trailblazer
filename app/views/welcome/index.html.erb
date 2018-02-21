@@ -19,8 +19,10 @@
 </ul>
 <% end %>
 <br>
+
 <%= link_to "Create a new List", new_list_path %><br>
 <hr>
+
 <h2>Answers to your Questions</h2>
 <% questions_with_answers(current_user).each do |question| %>
   <h4><%= question.title %></h4>
@@ -32,3 +34,9 @@
     <% end %>
   </ul>
 <% end %>
+
+<h2>Your Tips on Trails</h2>
+<div>
+  <p id="user-tip" data-id = "<%= @tip.id %>"><%= @tip.comment %></p>
+  <button id="next-tip" data-id="<%= @tip.id %>">See Next Tip</button>
+</div>

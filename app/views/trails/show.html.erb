@@ -1,27 +1,28 @@
-<h1><%= @trail.name %></h1>
+<div id = "trail-info">
+  <h2><%= @trail.name %></h2>
+  <button id="next-trail" data-id="<%= @trail.id %>">Next Trail</button>
+  <%= render 'formerrors' %>
 
-<%= render 'formerrors' %>
+  <!-- Submitted by  -->
+  <p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
 
-<!-- Submitted by  -->
-<p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
+  <!-- Either mark the trail as hiked or show text saying Hiked  -->
+  <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
+    <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
+    <%= submit_tag "Mark as Hiked" %>
+  <% end %>
+  <h4 id="hiked-before-display"><%= display_hiked_before(current_user) %></h4>
 
-<!-- Either mark the trail as hiked or show text saying Hiked  -->
-<%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
-  <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
-  <%= submit_tag "Mark as Hiked" %>
-<% end %>
-<h4 id="hiked-before-display"><%= display_hiked_before(current_user) %></h4>
-
-<!-- STAYS: Trail Display Information  -->
-<h4>Nearest City: <%= @trail.nearest_city %></h4>
-<p>Directions: <em><%= @trail.directions %></em></p>
-<p>Trail length: <%= @trail.distance %></p>
-<p>Description: <%= @trail.description %></p>
-<p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
-<%= user_trail_edit(current_user, @trail) %>
-<%= user_trail_delete(current_user, @trail) %>
-<hr>
-
+  <!-- STAYS: Trail Display Information  -->
+  <h4>Nearest City: <%= @trail.nearest_city %></h4>
+  <p>Directions: <em><%= @trail.directions %></em></p>
+  <p>Trail length: <%= @trail.distance %></p>
+  <p>Description: <%= @trail.description %></p>
+  <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
+  <%= user_trail_edit(current_user, @trail) %>
+  <%= user_trail_delete(current_user, @trail) %>
+  <hr>
+</div>
 
 <!-- Tips indexing and new tip form  -->
 <div id="tips" >

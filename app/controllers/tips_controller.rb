@@ -2,9 +2,8 @@ class TipsController < ApplicationController
   #only the creating user can edit, update, destory tip
   before_action :set_tip, :check_current_user, only: [:destroy]
 
-  # def index
-  #   #Ajax call on Trails show page
-  # end
+  def index
+  end
 
   def new
   end
@@ -23,6 +22,10 @@ class TipsController < ApplicationController
   def destroy
     @tip.destroy
   end
+
+  # def next
+  #
+  # end
 
   private
   def set_tip

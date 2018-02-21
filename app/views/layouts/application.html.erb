@@ -15,10 +15,6 @@
         <h4><em>A hiking trail tracker to track the trails you've trekked</em></h4>
       </header>
       <nav>
-        <%= link_to_unless_current("Home", { controller: "welcome", action: "index" }) %>
-        <%= link_to_unless_current("Trails", { controller: "trails", action: "index" }) %>
-        <%= link_to_unless_current("Submit a Trail", { controller: "trails", action: "new" }) %>
-        <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
       </nav>
       <%= yield %>
     </div>

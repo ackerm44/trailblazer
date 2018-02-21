@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root to: 'welcome#index'
+  get '/trails/:id/next', to: "trails#next"
+
 
   devise_for :users
   resources :trails, :lists, :tips, :questions, :answers

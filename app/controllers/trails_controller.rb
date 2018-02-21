@@ -1,5 +1,5 @@
 class TrailsController < ApplicationController
-  before_action :set_trail, only: [:show, :edit, :update, :destroy]
+  before_action :set_trail, only: [:show, :edit, :update, :destroy, :next]
 
   def index
     @regions = Region.all
@@ -14,9 +14,6 @@ class TrailsController < ApplicationController
   def show
     @lists = current_user.lists
     @user = current_user.username
-    
-    # @question = Question.new
-    # @answer = Answer.new
   end
 
   def new
@@ -50,6 +47,11 @@ class TrailsController < ApplicationController
       @trail.destroy
       redirect_to trails_path
     end
+  end
+
+  def next
+    @next_trail = @trail.alphabetical_next
+    render json: @next_trail
   end
 
   private

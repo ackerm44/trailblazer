@@ -1,5 +1,3 @@
 class TrailSerializer < ActiveModel::Serializer
-  attributes :id, :user_ids, :name, :list_ids
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :lists
+  attributes :id, :name, :nearest_city, :directions, :distance, :dog_friendly, :user_submitted, :region_id, :list_ids, :user_ids
 end
