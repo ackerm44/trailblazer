@@ -10,40 +10,45 @@ function attachListeners() {
 
   $("#question-form").submit(function(e) {
     e.preventDefault();
-  })
+    questionFormSubmit(this);
+  });
+
+  $("#answer-form").submit(function(e) {
+    e.preventDefault();
+    answerFormSubmit(this);
+  });
+
+  $("#hiked-before-form").submit(function(e) {
+    e.preventDefault();
+    hikedBeforeSubmit(this);
+  });
 }
 
 function tipFormSubmit(form) {
-    let values = $(form).serialize();
-    let posting = $.post('/tips', values);
-    posting.done(function(data) {
-      $("#tip-comment").append(`${data.comment} - ${data.user.username} `);
-    });
+  let values = $(form).serialize();
+  let posting = $.post('/tips', values);
+  posting.done(function(data) {
+    $("#tip-comment").append(`${data.comment} - ${data.user.username} `);
+  });
 }
 
+function questionFormSubmit(form) {
+  let questionValues = $(form).serialize();
+  let questionPosting = $.post('/questions', questionValues);
+  questionPosting.done(function(data) {
+    $("#question-title").append(`${data.title} - ${data.user.username}`);
+  });
+}
+
+function answerFormSubmit(form) {
+  let answerValues = $(form).serialize();
+  let answerPosting = $.post('/answers', answerValues);
+  answerPosting.done(function(data) {
+    $(`#question-answer-${data.question_id}`).append(`${data.title} - ${data.user.username}`)
+  });
+}
 
 $(function() {
-  $('#question-form').on('submit', function(e) {
-    e.preventDefault();
-    let questionValues = $(this).serialize();
-    let QuestionPosting = $.post('/questions', questionValues);
-    QuestionPosting.done(function(data) {
-      $("#question-title").append(data.title);
-    });
-  });
-  $(`#answer-question`).on("submit", function(e) {
-
-    // Not finding the question-answer-question id on done
-    e.preventDefault();
-    let answerValues = $(this).serialize();
-    let answerPosting = $.post('/answers', answerValues);
-    answerPosting.done(function(data) {
-      $(`#question-answer-${data.question_id}`).append(`${data.title}`)
-    });
-  });
-  if ($("#hiked-before-display").text() == "Marked as Hiked") {
-    $("#hiked-before-form").hide();
-  };
 
   // $("#hiked-before-form").on("submit", function(e) {
   //   e.preventDefault();

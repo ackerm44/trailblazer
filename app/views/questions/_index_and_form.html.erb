@@ -5,17 +5,20 @@
     <p><%= answer.title %> - <%=answer.user.username %>
     <%= user_answer_delete(current_user, answer) %></p>
   <% end %>
+
   <p id="question-answer-<%= question.id %>"</p>
+
   <div id="answer">
-    <%= form_for @answer, :html => {:id => 'answer-question'} do |f| %>
-      <%= f.text_field :title %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :question_id, :value => question.id %>
-      <%= f.submit "Submit Answer" %>
+    <%= form_tag answers_path, :id => 'answer-form' do %>
+      <%= text_field_tag "answer[title]" %>
+      <%= hidden_field_tag "answer[user_id]", current_user.id %>
+      <%= hidden_field_tag "answer[question_id]", question.id %>
+      <%= submit_tag "Submit Answer" %>
     <% end %>
   </div>
 
 <% end %>
+
 <p id="question-user"></p>
 <p id="question-title"></p>
 
