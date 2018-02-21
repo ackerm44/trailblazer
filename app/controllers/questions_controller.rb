@@ -1,12 +1,13 @@
 class QuestionsController < ApplicationController
   #only the creator of a questions can edit, update, destory
-  before_action :set_question, :check_current_user, only: [:edit, :update, :destroy]
+  before_action :set_question, :check_current_user, only: [:show, :edit, :update, :destroy, :next]
 
-  # def index
-  # end
+  def index
+    @questions = Question.all
+  end
 
-  # def show
-  # end
+  def show
+  end
 
   def new
   end
@@ -24,6 +25,11 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
+  end
+
+  def next
+    @next_question = @question.next
+    render json: @next_question
   end
 
   private

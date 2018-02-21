@@ -27,9 +27,6 @@ function attachListeners() {
     hikedBeforeSubmit(this);
   });
 
-  $("#next-trail").on("click", function() {
-    displayNextTrail(this);
-  })
 }
 
 function tipFormSubmit(form) {
@@ -64,44 +61,3 @@ function hikedBeforeSubmit(form) {
     $("#hiked-before-display").html("Marked as Hiked");
   });
 }
-
-function displayNextTrail(button) {
-  let id = $(button).attr('data-id')
-  $.get(`/trails/${id}/next`, function(data) {
-    $("#trail-info").html("");
-    let newTrail = new Trail(data);
-    let trailHtml = newTrail.formatShow();
-    $("#trail-info").html(trailHtml);
-
-  })
-}
-
-function Trail(data) {
-  this.id = data.id
-  this.name = data.name
-  this.directions = data.directions
-}
-
-Trail.prototype.formatShow = function() {
-  let trailHtml = `
-  <h1>${this.name}</h1>
-  `
-
-  return trailHtml
-}
-
-
-
-// t.string "name"
-// t.string "nearest_city"
-// t.string "directions"
-// t.float "distance"
-// t.text "description"
-// t.string "features"
-// t.boolean "dog_friendly"
-// t.boolean "user_submitted"
-// t.integer "region_id"
-// t.datetime "created_at", null: false
-// t.datetime "updated_at", null: false
-// t.float "latitude"
-// t.float "longitude"

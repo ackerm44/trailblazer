@@ -1,0 +1,64 @@
+$(document).ready(function() {
+  attachNextListener();
+})
+
+function attachNextListener() {
+  $("#next-trail").on("click", function() {
+    displayNextTrail(this);
+  })
+}
+
+
+function displayNextTrail(button) {
+  let id = $(button).attr('data-id')
+  $.get(`/trails/${id}/next`, function(data) {
+    $("#trail-info").html("");
+    let newTrail = new Trail(data);
+    console.log(newTrail)
+    let trailHtml = newTrail.formatShow();
+    $("#trail-info").html(trailHtml);
+
+  })
+}
+
+function Trail(data) {
+  this.id = data.id
+  this.name = data.name
+  this.nearest_city = data.nearest_city
+  this.directions = data.directions
+  this.distance = data.distance
+  this.description = data.description
+  this.dog_friendly = data.dog_friendly
+  this.user_submitted = data.user_submitted
+  this.region_id = data.region_id
+}
+
+
+
+
+Trail.prototype.formatShow = function() {
+  let trailHtml = `
+  <h1>${this.name}</h1>
+  <h4>Nearest City: ${this.nearest_city}</h4>
+  <p>Directions: <em>${this.directions}</em></p>
+  <p>Trail length: ${this.distance}</p>
+  <p>Description: ${this.description}</p>
+  <p>Dog Friendly: ${dogFriendly(this)} </p>
+
+
+  `
+
+  return trailHtml
+}
+
+
+function dogFriendly(info) {
+  let dog_friendy = "No"
+  if (info.dog_friendly === null) {
+    dog_friendly = "Unknown"
+  } else if (info.dog_friendly === true) {
+    dog_friendly = "Yes"
+  }
+  return dog_friendly
+  debugger;
+}

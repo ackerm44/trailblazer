@@ -6,3 +6,7 @@
 *  14. Fix form hangup with ajax postings
 *  15. Create a next button for trail show
   16. Put data somewhere about other users trail activity
+
+
+
+    $('#next-question').prop("disabled", false);

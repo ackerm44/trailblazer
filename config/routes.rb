@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'welcome#index'
-  get '/trails/:id/next', to: "trails#next"
+  get '/questions/:id/next', to: "questions#next"
 
 
   devise_for :users
