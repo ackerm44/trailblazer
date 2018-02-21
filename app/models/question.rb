@@ -4,6 +4,12 @@ class Question < ApplicationRecord
   has_many :answers
 
   def next
-    Question.where("id > ?", id).first
+    question = Question.where("id > ?", id).first
+
+    if question
+      question
+    else
+      Question.first
+    end
   end
 end

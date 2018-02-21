@@ -16,6 +16,13 @@ function displayNextQuestion(button) {
     let newQuestion = new Question(data);
     let questionHtml = newQuestion.formatShow();
     $("#question-show").html(questionHtml);
+    $("#answers-show").html("");
+    data.answers.forEach((answer) => {
+      let newAnswer = new Answer(answer);
+      console.log(newAnswer)
+      let answerHtml = newAnswer.formatIndex();
+      $("#answers-show").append(answerHtml);
+    })
     history.pushState(null, null, `/questions/${data.id}`)
   })
 }
@@ -35,7 +42,21 @@ Question.prototype.formatShow = function() {
   <h5>Regarding: <a href="/trail/${this.trail_id}">${this.trail_name}</a></h5>
   <h2>${this.title}</h2>
   <button id="next-question" data-id="${this.id}">Next Question</button>
-
   `
   return questionHtml;
+}
+
+function Answer(data) {
+  this.title = data.title
+  this.user_id = data.user_id
+  this.created_at = data.created_at
+}
+
+Answer.prototype.formatIndex = function() {
+  let answerHtml = `
+    <p>From ${this.user_id} on ${this.created_at}<br>
+    ${this.title}
+    </p>
+  `
+  return answerHtml;
 }

@@ -6,7 +6,7 @@
 *  14. Fix form hangup with ajax postings
   16. Put data somewhere about other users trail activity
   17.  Add "miles" to new trail form
-
+  18.  Remove next trail from trail show page
 
     $('#next-question').prop("disabled", false);
 
@@ -20,5 +20,4 @@ Requirements
 7. Nested form with custom attribute writer   ???
 8. OAuth - Follow Networker
 9. Nested Resource  - consider either users/1/lists/1 or regions/1/trails/1
-10. Form displays validation errors - trail form
 11. Readme, contributing, license
