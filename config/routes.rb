@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   get '/questions/:id/next', to: "questions#next"
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # devise_scope :user do
+  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  # end
 
-  devise_for :users
   resources :trails, :lists, :tips
   resources :regions, only: [:index, :show]
   resources :questions do

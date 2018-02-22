@@ -34,6 +34,7 @@ function tipFormSubmit(form) {
   let posting = $.post('/tips', values);
   posting.done(function(data) {
     $("#tip-comment").append(`${data.comment} - ${data.user.username} <br><br> `);
+    resetForm("tip-form");
   });
 }
 
@@ -63,4 +64,11 @@ function hikedBeforeSubmit(form) {
     $("#hiked-before-form").hide();
     $("#hiked-before-display").html("Marked as Hiked");
   });
+}
+
+
+function resetForm(formid) {
+ $('#' + formid + ' :input').not(':submit').each(function(){
+   $(this).val('').attr('checked',false).attr('selected',false);
+ });
 }
