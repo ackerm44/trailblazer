@@ -1,5 +1,5 @@
 <div id = "question-show">
-  <h5>From: <%= @question.user.username %> on <%= @question.created_at %> </h5>
+  <h5>From: <%= @question.user.username %> on <%= presentable_date(@question.created_at) %> </h5>
   <h5>Regarding: <%= link_to @question.trail.name, trail_path(@question.trail) %></h5>
   <h2><%= @question.title %></h2>
 
@@ -11,8 +11,9 @@
 <div id="answers-show">
   <% @question.answers.each do |answer| %>
     <p>
-      From <%= answer.user.username %> on <%= answer.created_at %><br>
+      From <%= answer.user.username %> on <%= presentable_date(answer.created_at) %><br>
       <%= answer.title %>
     </p>
   <% end %>
 </div>
+<%= link_to "Answer this Question", new_answer_path %>

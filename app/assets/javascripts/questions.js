@@ -37,10 +37,19 @@ function Question(data) {
 
 // 2018-02-20T16:29:08.774Z
 Question.prototype.formatDate = function() {
+  const months = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August", "September",
+    "October", "November", "December"
+  ];
+
   let date = this.created_at
-  debugger;
   let year = date.slice(0, 4);
   let month = date.slice(5, 7);
+  if (month[0] == 0) {
+    month = month.slice(1,2)
+    month = months[month - 1]
+  }
   let day = date.slice(8, 10);
   let dateHtml = `${month} ${day}, ${year}`;
   return dateHtml;
@@ -65,10 +74,18 @@ function Answer(data) {
 }
 
 Answer.prototype.formatDate = function() {
-  let date = this.created_at
-  debugger;
+  const months = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August", "September",
+    "October", "November", "December"
+  ];
+  let date = this.created_at;
   let year = date.slice(0, 4);
   let month = date.slice(5, 7);
+  if (month[0] == 0) {
+    month = month.slice(1,2)
+    month = months[month - 1]
+  }
   let day = date.slice(8, 10);
   let dateHtml = `${month} ${day}, ${year}`;
   return dateHtml;
