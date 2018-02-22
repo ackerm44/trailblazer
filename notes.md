@@ -7,7 +7,6 @@
   17.  Add "miles" to new trail form
   18.  Remove next trail from trail show page
   19.  Fix user_id on answers has_many render on questions
-    $('#next-question').prop("disabled", false);
   20.  Delete button not performing any action on trails show
   21.  Slim down routes
 
@@ -18,7 +17,3 @@ Requirements
 5. Blog
 7. Nested form with custom attribute writer   ???
 11. Readme, contributing, license
-
-
-Warning
-URL Blocked: This redirect failed because the redirect URI is not whitelisted in the app’s Client OAuth Settings. Make sure Client and Web OAuth Login are on and add all your app domains as Valid OAuth Redirect URIs.

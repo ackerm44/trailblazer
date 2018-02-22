@@ -4,5 +4,39 @@
   <%= f.label :description, "List Description" %>
   <%= f.text_field :description, :size=>"50" %><br><br>
   <%= hidden_field_tag "list[user_id]", current_user.id %>
+
+  <br><br>
+  <h3>Add Trails to this list</h3>
+  <div id="trail-collection-selects">
+    <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
+    <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
+    <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
+
+  </div><br><br>
+  <!-- <a href="#" id="add-trail-collection-select">Select Another Trail</a> -->
+
+  <a href="#" id="list-add-new-trail">Or add a new Trail</a>
+  <br><br>
+  <div id="show-trail-form">
+    <%= f.fields_for @trail do |trail_builder| %>
+      <%= render 'list_trails_form', f: trail_builder %>
+    <% end %>
+  </div><br><br>
   <%= f.submit %>
 <% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function () {
+    $('#show-trail-form').hide();
+    attachNewTrailListener();
+  })
+
+  function attachNewTrailListener() {
+    $(document).on('click', "#list-add-new-trail", function(e) {
+      e.preventDefault();
+      $('#show-trail-form').show();
+    })
+
+  }
+</script>

@@ -1,6 +1,7 @@
 class Trail < ApplicationRecord
   has_and_belongs_to_many :users
-  has_and_belongs_to_many :lists
+  has_many :lists_trails
+  has_many :lists, through: :trails
   belongs_to :region
   has_many :questions
   has_many :tips

@@ -1,24 +1,24 @@
-<%= render 'formerrors' %>
-
-<%= form_for @trail do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.label :nearest_city, "Nearest City" %>
-  <%= f.text_field :nearest_city %><br>
-  <%= f.label :directions %>
-  <%= f.text_field :directions %><br>
-  <%= f.label :distance, "Trail Distance" %>
-  <%= f.number_field :distance, step: :any %><br>
-  <%= f.label :description %>
-  <%= f.text_area :description %><br>
-  <%= f.label :features %>
-  <%= f.text_field :features %><br>
-  <%= f.label :dog_friendly %>
-  <%= f.check_box :dog_friendly %><br>
-  <%= f.label :region_id %>
-  <%= f.collection_select :region_id, Region.all, :id, :name, :prompt => true  %><br>
-  <%= f.hidden_field :user_submitted, :value => true %>
-  <%= f.hidden_field :user_ids, :value => current_user.id %>
-  <br><br>
-  <%= f.submit %>
-<% end %>
+<div id="new-trail-form">
+  <%= form_for @trail do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :nearest_city, "Nearest City" %>
+    <%= f.text_field :nearest_city %><br>
+    <%= f.label :directions %>
+    <%= f.text_field :directions %><br>
+    <%= f.label :distance, "Trail Distance" %>
+    <%= f.number_field :distance, step: :any %><br>
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
+    <%= f.label :features %>
+    <%= f.text_field :features %><br>
+    <%= f.label :dog_friendly %>
+    <%= f.check_box :dog_friendly %><br>
+    <%= f.label :region_id %>
+    <%= f.collection_select :region_id, Region.all, :id, :name, :prompt => true  %><br>
+    <%= f.hidden_field :user_submitted, :value => true %>
+    <%= f.hidden_field :user_ids, :value => current_user.id %>
+    <br><br>
+    <%= f.submit %>
+  <% end %>
+</div>
