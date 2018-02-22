@@ -17,3 +17,21 @@ Requirements
 5. Blog
 7. Nested form with custom attribute writer   ???
 11. Readme, contributing, license
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function () {
+    $('#show-trail-form').hide();
+    attachNewTrailListener();
+  })
+
+  function attachNewTrailListener() {
+    $(document).on('click', "#list-add-new-trail", function(e) {
+      e.preventDefault();
+      $('#show-trail-form').show();
+    })
+
+  }
+</script>
+
+
+<!-- <%=# render 'list_trails_form', f: trail_builder %> -->

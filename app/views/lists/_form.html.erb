@@ -9,8 +9,6 @@
   <h3>Add Trails to this list</h3>
   <div id="trail-collection-selects">
     <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
-    <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
-    <%= f.collection_select :trail_ids, Trail.order(:name), :id, :name, :prompt => true %><br>
 
   </div><br><br>
   <!-- <a href="#" id="add-trail-collection-select">Select Another Trail</a> -->
@@ -18,25 +16,25 @@
   <a href="#" id="list-add-new-trail">Or add a new Trail</a>
   <br><br>
   <div id="show-trail-form">
-    <%= f.fields_for @trail do |trail_builder| %>
-      <%= render 'list_trails_form', f: trail_builder %>
+    <%= f.fields_for :trails do |trail_builder| %>
+      <%= trail_builder.label :name %>
+      <%= trail_builder.text_field :name %><br>
+      <%= trail_builder.label :nearest_city, "Nearest City" %>
+      <%= trail_builder.text_field :nearest_city %><br>
+      <%= trail_builder.label :directions %>
+      <%= trail_builder.text_field :directions %><br>
+      <%= trail_builder.label :distance, "Trail Distance" %>
+      <%= trail_builder.number_field :distance, step: :any %><br>
+      <%= trail_builder.label :description %>
+      <%= trail_builder.text_area :description %><br>
+      <%= trail_builder.label :features %>
+      <%= trail_builder.text_field :features %><br>
+      <%= trail_builder.label :dog_friendly %>
+      <%= trail_builder.check_box :dog_friendly %><br>
+      <%= trail_builder.label :region_id %>
+      <%= trail_builder.collection_select :region_id, Region.all, :id, :name, :prompt => true  %><br>
+      <%= trail_builder.hidden_field :user_submitted, :value => true %>
     <% end %>
   </div><br><br>
   <%= f.submit %>
 <% end %>
-
-
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function () {
-    $('#show-trail-form').hide();
-    attachNewTrailListener();
-  })
-
-  function attachNewTrailListener() {
-    $(document).on('click', "#list-add-new-trail", function(e) {
-      e.preventDefault();
-      $('#show-trail-form').show();
-    })
-
-  }
-</script>

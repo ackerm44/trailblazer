@@ -8,13 +8,13 @@ class ListsController < ApplicationController
   end
 
   def new
-
     @list = List.new
+    @lists_trail = @list.lists_trails.build
     @trail = @list.trails.build
   end
 
   def create
-    raise params.inspect
+    # raise params.inspect
     @list = List.new(list_params)
     if @list.save
       redirect_to root_path
@@ -47,26 +47,26 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :description, :user_id, :trail_id, :trail)
+    params.require(:list).permit(:name, :description, :user_id, :trail_ids,
+      :trails_attributes => [:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :user_submitted])
   end
 
 end
 
 
 
-# "utf8"=>"✓",
-# "authenticity_token"=>"9jx4xZq3YFoHC2dsJLOHyfwNh7ZvQl/UlfipLS/QvAPkLW8OYyO3FxPb4AfKdNWrlbANayYf/JuYJftRaz+mwQ==",
-# "list"=>{
-#   "name"=>"Rocky's Favorite Hikes",
-#   "description"=>"Rocky's favorite places to go during all seasons",
-#   "user_id"=>"3",
-#   "trail_ids"=>"",
-#   "trail"=>{
-#     "name"=>
-#     "Rocky's Trail",
-#     "nearest_city"=>"Traverse City",
-#     "directions"=>"Supply to Hobbs to state land on left",
-#     "distance"=>"6.5",
-#     "description"=>"Off road two track, very sandy with some hills. Forested with access to small lake.",
-#     "features"=>"",
-#     "dog_friendly"=>"1", "region_id"=>"1", "user_submitted"=>"true"}}, "commit"=>"Create List", "controller"=>"lists", "action"=>"create"} permitted: false>
+# <ActionController::Parameters
+# {"utf8"=>"✓",
+#   "authenticity_token"=>"jsQLgoB7W4Q6A9CkgEnyd93gE8/BClshrjsuhMHdzPCc1RxJee+MyS7TV89ujqAVtF2ZEohX+G6j5nz4hTLWMg==",
+#   "list"=>{
+#     "name"=>"Tset asldjalsd",
+#     "description"=>"sljlksjsflskjdf",
+#     "user_id"=>"3",
+#     "trail_ids"=>"256",
+#     "trails_attributes"=>{
+#       "0"=>{
+#         "name"=>"",
+#         "nearest_city"=>"",
+#         "directions"=>"",
+#         "distance"=>"",
+#         "description"=>"", "features"=>"", "dog_friendly"=>"0", "region_id"=>"", "user_submitted"=>"true"}}}, "commit"=>"Create List", "controller"=>"lists", "action"=>"create"} permitted: false>
