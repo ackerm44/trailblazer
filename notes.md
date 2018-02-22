@@ -7,12 +7,11 @@
   16. Put data somewhere about other users trail activity
   17.  Add "miles" to new trail form
   18.  Remove next trail from trail show page
-
+  19.  Fix user_id on answers has_many render on questions
     $('#next-question').prop("disabled", false);
 
 
 Requirements
-1. Render answers on Questions#show (has-many #3)
 2. JS Model Objects w method on the prototype - format date
 3. spec-js.md and spec.md
 4. Walk thru video

@@ -19,7 +19,6 @@ function displayNextQuestion(button) {
     $("#answers-show").html("");
     data.answers.forEach((answer) => {
       let newAnswer = new Answer(answer);
-      console.log(newAnswer)
       let answerHtml = newAnswer.formatIndex();
       $("#answers-show").append(answerHtml);
     })
@@ -36,9 +35,22 @@ function Question(data) {
   this.username = data.user.username
 }
 
+// 2018-02-20T16:29:08.774Z
+Question.prototype.formatDate = function() {
+  let date = this.created_at
+  debugger;
+  let year = date.slice(0, 4);
+  let month = date.slice(5, 7);
+  let day = date.slice(8, 10);
+  let dateHtml = `${month} ${day}, ${year}`;
+  return dateHtml;
+}
+
+
 Question.prototype.formatShow = function() {
+  let questionDate = this;
   let questionHtml = `
-  <h5>From: ${this.username} on ${this.created_at}</h5>
+  <h5>From: ${this.username} on ${questionDate.formatDate()}</h5>
   <h5>Regarding: <a href="/trail/${this.trail_id}">${this.trail_name}</a></h5>
   <h2>${this.title}</h2>
   <button id="next-question" data-id="${this.id}">Next Question</button>
@@ -52,9 +64,20 @@ function Answer(data) {
   this.created_at = data.created_at
 }
 
+Answer.prototype.formatDate = function() {
+  let date = this.created_at
+  debugger;
+  let year = date.slice(0, 4);
+  let month = date.slice(5, 7);
+  let day = date.slice(8, 10);
+  let dateHtml = `${month} ${day}, ${year}`;
+  return dateHtml;
+}
+
 Answer.prototype.formatIndex = function() {
+  let answerDate = this;
   let answerHtml = `
-    <p>From ${this.user_id} on ${this.created_at}<br>
+    <p>From ${this.user_id} on ${answerDate.formatDate()}<br>
     ${this.title}
     </p>
   `
