@@ -3,13 +3,13 @@
     <%= user_question_delete(current_user, question) %></p>
   <% question.answers.each do |answer| %>
     <p><%= answer.title %> - <%=answer.user.username %>
-    <%= user_answer_delete(current_user, answer) %></p>
+    <%= user_answer_delete(current_user, question, answer) %></p>
   <% end %>
 
   <p id="question-answer-<%= question.id %>"</p>
 
   <div id="answer">
-    <%= form_tag answers_path, :id => 'answer-form' do %>
+    <%= form_tag question_answers_path(question), :id => 'answer-form' do %>
       <%= text_field_tag "answer[title]" %>
       <%= hidden_field_tag "answer[user_id]", current_user.id %>
       <%= hidden_field_tag "answer[question_id]", question.id %>

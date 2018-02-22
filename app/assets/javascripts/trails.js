@@ -33,7 +33,7 @@ function tipFormSubmit(form) {
   let values = $(form).serialize();
   let posting = $.post('/tips', values);
   posting.done(function(data) {
-    $("#tip-comment").append(`${data.comment} - ${data.user.username} `);
+    $("#tip-comment").append(`${data.comment} - ${data.user.username} <br><br> `);
   });
 }
 
@@ -47,8 +47,11 @@ function questionFormSubmit(form) {
 
 function answerFormSubmit(form) {
   let answerValues = $(form).serialize();
-  let answerPosting = $.post('/answers', answerValues);
+  console.log(answerValues)
+  console.log($(form).attr("action"))
+  let answerPosting = $.post(`${$(form).attr("action")}.json`, answerValues);
   answerPosting.done(function(data) {
+    console.log(data)
     $(`#question-answer-${data.question_id}`).append(`${data.title} - ${data.user.username}`)
   });
 }

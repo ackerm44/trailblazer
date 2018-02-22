@@ -7,9 +7,9 @@ module AnswersHelper
 
   end
 
-  def user_answer_delete(current_user, answer)
+  def user_answer_delete(current_user, question, answer)
     if current_user == answer.user
-      link_to "Delete", answer_path(answer), :method => 'delete'
+      link_to "Delete", question_answer_path(question, answer), :method => 'delete'
     end
   end
 

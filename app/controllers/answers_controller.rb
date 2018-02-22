@@ -6,19 +6,29 @@ class AnswersController < ApplicationController
   # end
 
   def new
+    @question = Question.find(params[:question_id])
+    @answer = Answer.new
   end
 
   def create
+    @question = Question.find(params[:question_id])
     @answer = Answer.create(answer_params)
-    render json: @answer, status: 201
+    respond_to do |f|
+      f.html {redirect_to question_path(@question) }
+      f.json {render json: @answer, status: 201}
+    end
   end
 
   def edit
+    @question = Question.find(params[:question_id])
   end
 
   def update
+    @question = Question.find(params[:question_id])
     if @answer.update(answer_params)
-      redirect_to trail_path(@answer.trail)
+      redirect_to question_path(@question)
+    else
+      render :edit
     end
   end
 
