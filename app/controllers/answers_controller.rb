@@ -2,8 +2,10 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:edit, :update, :destroy]
   #only the creator of an answer can edit, update, destroy
 
-  # def index
-  # end
+  def index
+    @question = Question.find(params[:id])
+    @answers = @question.answers
+  end
 
   def new
     @question = Question.find(params[:question_id])
@@ -34,6 +36,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
+    redirect_to request.referer
   end
 
   private

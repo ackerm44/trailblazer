@@ -10,10 +10,16 @@ function attachTipListeners() {
         let newTip = new Tip(tip);
         let tipHtml = newTip.formatIndex();
         $("#user-tips").append("<ul>" + tipHtml + "</ul>");
-      })
-    })
-  })
+      });
+    });
+  });
+  // $(document).on('click', "#user-tip-delete", function(e) {
+  //   e.preventDefault;
+  //   console.log('Here');
+  //   $("#user-tip-delete").remove();
+  // })
 }
+
 
 function Tip(data) {
   this.comment = data.comment;

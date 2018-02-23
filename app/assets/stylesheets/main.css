@@ -3,7 +3,7 @@ body {
 }
 
 .wrapper {
-  padding: 10px;
+  padding: 25px;
 }
 
 nav {
@@ -33,6 +33,8 @@ header {
   text-align: right;
   font-family: 'Kaushan Script', cursive;
   padding-bottom: 20px;
+  color: #2A5A6A;
+
 }
 
 .welcome-grid {
@@ -72,4 +74,8 @@ li {
 .trail-index-list {
   column-count: 2;
   column-gap: 40px;
+}
+
+footer {
+  text-align: center;
 }

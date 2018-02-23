@@ -23,6 +23,7 @@ class TipsController < ApplicationController
 
   def destroy
     @tip.destroy
+    redirect_to request.referer
   end
 
   # def next
