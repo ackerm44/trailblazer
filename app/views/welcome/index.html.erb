@@ -1,23 +1,22 @@
 <h1 id="welcome">Welcome, <%= current_user.username %>.</h1>
-
+<hr>
 <div class="welcome-grid">
   <div class="user-lists">
+    <h2>Your Lists</h2>
+    <br>
     <% current_user.lists.each do |list| %>
-      <h2><%= link_to list.name, list_path(list) %></h2>
+      <h3><%= link_to list.name, list_path(list) %></h3>
       <h4><%= list.description %></h4>
-      <ul>
-      <% list.trails.each do |trail| %>
-        <li><%= link_to trail.name, trail_path(trail) %></li>
-      <% end %>
-    </ul>
+      <br>
     <% end %>
     <br>
 
-    <%= link_to "Create a new List", new_list_path %><br>
+    <%= link_to "Create a new List", new_list_path, :id => "new-list" %><br>
   </div>
 
   <div class="user-past-hikes">
     <h2>Past Hikes</h2>
+    <br>
     <ul>
     <% current_user.trails.each do |trail| %>
       <li><%= link_to trail.name, trail_path(trail) %></li>
@@ -28,6 +27,7 @@
 
   <div class="user-questions-and-tips">
     <h2>Answers to your Questions</h2>
+    <br>
     <% questions_with_answers(current_user).each do |question| %>
       <h4><%= question.title %></h4>
       <ul>

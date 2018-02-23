@@ -7,6 +7,8 @@
   19.  Fix user_id on answers has_many render on questions
   20.  Delete button not performing any action on trails show
   21.  Slim down routes
+  22.  Split on grid tips and questions/answers
+  23. Slide toggle no longer working
 
 
 Requirements

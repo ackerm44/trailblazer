@@ -38,9 +38,9 @@ class QuestionsController < ApplicationController
     end
 
     def check_current_user
-      if current_user != @question.user
-        redirect_to root_path
-      end
+      # if current_user != @question.user
+      #   redirect_to root_path
+      # end
     end
 
     def question_params

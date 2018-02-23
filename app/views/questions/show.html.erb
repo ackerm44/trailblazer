@@ -6,12 +6,12 @@
   <button id="next-question" data-id="<%= @question.id %>">Next Question</button>
 
 </div>
-
-<h4>Answers</h4>
+<br>
+<hr>
+<h3>Answers</h3>
 <div id="answers-show">
   <% @question.answers.each do |answer| %>
-    <p>
-      From <%= answer.user.username %> on <%= presentable_date(answer.created_at) %><br>
+    <p>From <%= answer.user.username %> on <%= presentable_date(answer.created_at) %>:<br>
       <%= answer.title %>
     </p>
   <% end %>

@@ -2,7 +2,7 @@
 <ol>
 <% @questions.each do |question| %>
   <li>
-    <p>On: <%= question.created_at %>, from: <%= question.user.username %><br>
+    <p>On: <%= presentable_date(question.created_at) %>, from: <%= question.user.username %><br>
       <%= link_to question.title, question_path(question) %>
     </p>
   </li>

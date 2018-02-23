@@ -1,8 +1,9 @@
-<h3><%= @question.title %></h3>
+<h2>Question: <%= @question.title %></h2>
+<h5>Regarding: <%= link_to @question.trail.name, trail_path(@question.trail) %></h5>
 
 <%= form_for [@question, @answer] do |f| %>
   <%= f.label "Your Answer: " %>
-  <%= f.text_field :title, :size => "50" %><br><br>
+  <%= f.text_area :title %><br><br>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :question_id, :value => @question.id %>
   <%= f.submit %>

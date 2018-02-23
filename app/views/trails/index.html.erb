@@ -5,21 +5,24 @@
   <%= text_field_tag :query, params[:query], placeholder: "Name or Part of Name" %>
   <%= submit_tag "Search" %>
 <% end %>
+<br>
 <%= form_tag trails_path, method: :get do %>
   <strong>Search by City: </strong></br>
   <%= text_field_tag :city_query, params[:city_query], placeholder: "City" %>
   <%= submit_tag "Search" %>
 <% end %>
-
+<br>
 <% if @trails %>
   <% @trails.each do |trail| %>
-    <%= link_to trail.name, trail_path(trail) %>
+    <%= link_to trail.name, trail_path(trail) %> ·
   <% end %>
 <% end %>
 <hr>
 <% @regions.each do |region| %>
-  <div>
+  <div class="region-header">
     <h2 id="region-<%=region.id %>" ><%= region.name %></h2>
+  </div>
+  <div class="trail-index-list">
     <ul>
       <% region.trails.order(:name).each do |trail| %>
         <li><%= link_to trail.name, trail_path(trail) %></li>
@@ -31,7 +34,7 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    $('div').on("click", function() {
+    $('.region-header').on("click", function() {
       $(this).children('ul').slideToggle();
     })
   })
