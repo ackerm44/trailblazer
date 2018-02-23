@@ -48,7 +48,7 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:name, :description, :user_id, :trail_ids,
-      :trails_attributes => [:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :user_submitted])
+      :trails_attributes => [:name, :nearest_city, :directions, :distance, :description, :features, :dog_friendly, :region_id, :user_submitted, :user_id])
   end
 
 end

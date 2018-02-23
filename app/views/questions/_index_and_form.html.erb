@@ -1,32 +1,36 @@
-<% @trail.questions.each do |question| %>
-  <p><em>From <%= question.user.username %>: </em><strong><%= question.title %></strong>
-    <%= user_question_delete(current_user, question) %></p>
-  <% question.answers.each do |answer| %>
-    <p><%= answer.title %> - <%=answer.user.username %>
-    <%= user_answer_delete(current_user, question, answer) %></p>
+  <% @trail.questions.each do |question| %>
+    <h3><em>From <%= question.user.username %>: </em><%= question.title %>
+      <%= user_question_delete(current_user, question) %></h3>
+      <div class="answers">
+        <% question.answers.each do |answer| %>
+          <p><em><%= answer.title %> - <%=answer.user.username %>
+          <%= user_answer_delete(current_user, question, answer) %></em></p>
+        <% end %>
+      </div>
+
+    <p id="question-answer-<%= question.id %>"</p>
+
+    <div class="centerize" id="answer">
+      <%= form_tag question_answers_path(question), :id => 'answer-form' do %>
+        <%= text_field_tag "answer[title]" %><br>
+        <%= hidden_field_tag "answer[user_id]", current_user.id %>
+        <%= hidden_field_tag "answer[question_id]", question.id %>
+        <%= submit_tag "Submit Answer" %>
+      <% end %>
+    </div>
+
   <% end %>
-
-  <p id="question-answer-<%= question.id %>"</p>
-
-  <div id="answer">
-    <%= form_tag question_answers_path(question), :id => 'answer-form' do %>
-      <%= text_field_tag "answer[title]" %>
-      <%= hidden_field_tag "answer[user_id]", current_user.id %>
-      <%= hidden_field_tag "answer[question_id]", question.id %>
-      <%= submit_tag "Submit Answer" %>
-    <% end %>
-  </div>
-
-<% end %>
 
 <p id="question-user"></p>
 <p id="question-title"></p>
 
 <br><br>
 
-<%= form_tag questions_path,:id => 'question-form' do %>
-  <%= text_field_tag 'question[title]' %><br>
-  <%= hidden_field_tag 'question[user_id]', current_user.id %>
-  <%= hidden_field_tag 'question[trail_id]', @trail.id %>
-  <%= submit_tag "Ask Question" %>
-<% end %>
+<div class="centerize">
+  <%= form_tag questions_path,:id => 'question-form' do %>
+    <%= text_field_tag 'question[title]' %><br>
+    <%= hidden_field_tag 'question[user_id]', current_user.id %>
+    <%= hidden_field_tag 'question[trail_id]', @trail.id %>
+    <%= submit_tag "Ask Question" %>
+  <% end %>
+</div>

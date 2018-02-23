@@ -4,32 +4,34 @@
   <p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
 
   <!-- STAYS: Trail Display Information  -->
-  <h4>Nearest City: <%= @trail.nearest_city %></h4>
-  <p>Directions: <em><%= @trail.directions %></em></p>
-  <p>Trail length: <%= @trail.distance %></p>
-  <p>Description: <%= @trail.description %></p>
-  <p>Dog Friendly: <%= display_dog_friendly(@trail) %></p>
+  <span><a>Nearest City: </a><b><%= @trail.nearest_city %></b></span><br><br>
+  <span><a>Directions: </a><b><%= @trail.directions %></b></span><br><br>
+  <span><a>Trail length: </a><b><%= @trail.distance %></b></span><br><br>
+  <span><a>Description: </a><b><%= @trail.description %></b></span><br><br>
+  <span><a>Dog Friendly: </a><b><%= display_dog_friendly(@trail) %></a></span><br><br>
   <%= user_trail_edit(current_user, @trail) %>
   <%= user_trail_delete(current_user, @trail) %>
 </div>
-  <hr>
+
   <!-- Either mark the trail as hiked or show text saying Hiked  -->
   <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
     <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
-    <%= submit_tag "Mark as Hiked" %>
+    <div class="centerize">
+      <%= submit_tag "Mark as Hiked" %>
+    </div>
   <% end %>
   <h4 id="hiked-before-display"><%= display_hiked_before(current_user) %></h4>
-
+<hr>
 <!-- Tips indexing and new tip form  -->
 <div id="tips" >
-  <h4>Tips about this Trail</h4>
+  <h2>Tips about this Trail</h2>
   <%= render 'tips/index_and_form' %>
 </div>
 <hr>
 
 <!-- Questions indexing and new tip form  -->
 <div id="questions">
-  <h4>Questions about this Trail</h4>
+  <h2>Questions about this Trail</h2>
   <%= render 'questions/index_and_form' %>
 </div>
 <hr>

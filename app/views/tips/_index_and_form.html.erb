@@ -1,13 +1,15 @@
 <% @trail.tips.each do |tip| %>
-  <p><%= tip.comment %> - <%= tip.user.username %>
+  <p><%= tip.comment %> --- <em><%= tip.user.username %></em>
   <%= user_tip_delete(current_user, tip) %></p>
 <% end %>
 <p id="tip-comment"></p>
 <br><br>
 
 <%= form_tag tips_path, :id => 'tip-form' do %>
-  <%= text_field_tag 'tip[comment]' %><br>
-  <%= hidden_field_tag 'tip[user_id]', current_user.id %>
-  <%= hidden_field_tag 'tip[trail_id]', @trail.id %>
-  <%= submit_tag "Leave Tip", :data => { disable_with: false } %>
+  <div class="centerize">
+    <%= text_field_tag 'tip[comment]', "Leave a Tip" %><br>
+    <%= hidden_field_tag 'tip[user_id]', current_user.id %>
+    <%= hidden_field_tag 'tip[trail_id]', @trail.id %>
+    <%= submit_tag "Leave Tip", :data => { disable_with: false } %>
+  </div>
 <% end %>

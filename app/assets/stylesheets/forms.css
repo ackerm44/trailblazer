@@ -10,7 +10,16 @@ input {
 }
 
 input[type=submit] {
-  width: 100%; 
+  width: 30%;
+  padding: 10px;
+  background-color: #619B4D;
+  color: white;
+  font-size: 110%;
+  border-radius: 5px;
+}
+
+input[type=submit]:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 
@@ -18,4 +27,15 @@ textarea {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 15px;
+}
+
+.centerize {
+  display: block;
+  text-align: center;
+}
+
+form#tip-form input, form#answer-form input, form#question-form input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 30%;
 }

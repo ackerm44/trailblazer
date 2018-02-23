@@ -3,7 +3,7 @@ body {
 }
 
 .wrapper {
-  padding: 25px;
+  padding: 20px;
 }
 
 nav {
@@ -32,8 +32,7 @@ header {
 #welcome {
   text-align: right;
   font-family: 'Kaushan Script', cursive;
-  padding-bottom: 20px;
-  color: #2A5A6A;
+  color: #619B4D;
 
 }
 
@@ -76,6 +75,28 @@ li {
   column-gap: 40px;
 }
 
-footer {
+footer p {
   text-align: center;
+}
+
+#trail-info h2 {
+  font-size: 50px;
+  color: #619B4D;
+  margin-bottom: -5px;
+}
+
+#trail-info a {
+  font-size: 30px;
+}
+
+#trail-info b {
+  font-size: 24px;
+}
+
+#tips h2, #questions h2  {
+  color: #619B4D;
+}
+
+.answers {
+margin-left: 40px;
 }
