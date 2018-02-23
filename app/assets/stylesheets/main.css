@@ -1,8 +1,32 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
 .wrapper {
-  margin: 75px;
   padding: 20px;
 }
 
-header {
+nav {
+  padding: 25px;
+  background-color: #619B4D;
+  font-size: 135%;
+}
 
+
+header {
+  background-color: #CECECE;
+  padding: 35px;
+  font-size: 130%;
+  line-height: 15px;
+}
+
+#welcome {
+  text-align: right;
+}
+
+.welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 }

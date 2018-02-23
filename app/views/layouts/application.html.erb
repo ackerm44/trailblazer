@@ -3,20 +3,19 @@
   <head>
     <title>Trailblazer</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
   </head>
 
   <body>
+    <%= render 'layouts/logged_in_header' %>
+    <header>
+      <h1>Michigan Trailblazer</h1>
+      <h4><em>A hiking trail tracker to track the trails you've trekked</em></h4>
+    </header>
     <div class= "wrapper">
-      <header>
-        <h1>Michigan Trailblazer</h1>
-        <h4><em>A hiking trail tracker to track the trails you've trekked</em></h4>
-      </header>
-      <nav>
-        <%= link_to "Log Out", destroy_user_session_path, :method => 'delete' %>
-      </nav>
       <%= yield %>
     </div>
   </body>

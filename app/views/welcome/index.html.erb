@@ -1,40 +1,46 @@
-<h1>Welcome, <%= current_user.username %>.</h1>
+<h1 id="welcome">Welcome, <%= current_user.username %>.</h1>
 
-
-<h2>Past Hikes</h2>
-  <ul>
-  <% current_user.trails.each do |trail| %>
-    <li><%= link_to trail.name, trail_path(trail) %></li>
-  <% end %>
-  </ul>
-
-
-<% current_user.lists.each do |list| %>
-  <h2><%= link_to list.name, list_path(list) %></h2>
-  <h4><%= list.description %></h4>
-  <ul>
-  <% list.trails.each do |trail| %>
-    <li><%= link_to trail.name, trail_path(trail) %></li>
-  <% end %>
-</ul>
-<% end %>
-<br>
-
-<%= link_to "Create a new List", new_list_path %><br>
-<hr>
-
-<h2>Answers to your Questions</h2>
-<% questions_with_answers(current_user).each do |question| %>
-  <h4><%= question.title %></h4>
-  <ul>
-    <% question.answers.each do |answer| %>
-      <li>
-        <%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %>
-      </li>
+<div class="welcome-grid">
+  <div class="user-lists">
+    <% current_user.lists.each do |list| %>
+      <h2><%= link_to list.name, list_path(list) %></h2>
+      <h4><%= list.description %></h4>
+      <ul>
+      <% list.trails.each do |trail| %>
+        <li><%= link_to trail.name, trail_path(trail) %></li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
-<% end %>
+    <br>
 
-<div id="user-tips">
-  <button id="get-user-tips">Show Tips You've Written</button>
+    <%= link_to "Create a new List", new_list_path %><br>
+  </div>
+
+  <div class="user-past-hikes">
+    <h2>Past Hikes</h2>
+    <ul>
+    <% current_user.trails.each do |trail| %>
+      <li><%= link_to trail.name, trail_path(trail) %></li>
+    <% end %>
+    </ul>
+  </div>
+
+
+  <div class="user-questions-and-tips">
+    <h2>Answers to your Questions</h2>
+    <% questions_with_answers(current_user).each do |question| %>
+      <h4><%= question.title %></h4>
+      <ul>
+        <% question.answers.each do |answer| %>
+          <li>
+            <%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div id="user-tips">
+      <button id="get-user-tips">Show Tips You've Written</button>
+    </div>
+  </div>
 </div>
