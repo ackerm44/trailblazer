@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   #only the creator of a questions can edit, update, destory
-  before_action :set_question, :check_current_user, only: [:show, :edit, :update, :destroy, :next]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :next]
 
   def index
     @questions = Question.all
@@ -30,12 +30,6 @@ class QuestionsController < ApplicationController
   private
     def set_question
       @question = Question.find(params[:id])
-    end
-
-    def check_current_user
-      # if current_user != @question.user
-      #   redirect_to root_path
-      # end
     end
 
     def question_params

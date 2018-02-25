@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :trails, :tips
-  resources :lists, only [:show, :new, :create, :edit, :update, :destroy]
+  resources :lists, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :regions, only: [:index, :show]
   resources :questions do
     resources :answers, only: [:index, :new, :create, :edit, :update, :destroy]
