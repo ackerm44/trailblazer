@@ -17,12 +17,6 @@ class QuestionsController < ApplicationController
     render json: @question, status: 201
   end
 
-  # def edit
-  # end
-  #
-  # def update
-  # end
-
   def destroy
     @question.destroy
     redirect_to request.referer

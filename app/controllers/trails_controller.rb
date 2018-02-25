@@ -34,7 +34,6 @@ class TrailsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @trail.update(trail_params)
       redirect_to trail_path(@trail)
     else
@@ -49,10 +48,10 @@ class TrailsController < ApplicationController
     end
   end
 
-  def next
-    @next_trail = @trail.alphabetical_next
-    render json: @next_trail
-  end
+  # def next
+  #   @next_trail = @trail.alphabetical_next
+  #   render json: @next_trail
+  # end
 
   private
   def set_trail

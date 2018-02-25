@@ -30,8 +30,8 @@ function Tip(data) {
 Tip.prototype.formatIndex = function() {
   let tipHtml = `
   <li>
-  ${this.comment}
-  - <a href="/trails/${this.trail_id}">${this.trail_name}</a>
+  ${this.comment} <br>
+  Regarding: <a href="/trails/${this.trail_id}">${this.trail_name}</a>
   </li>
   `
   return tipHtml;

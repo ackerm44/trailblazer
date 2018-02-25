@@ -33,7 +33,7 @@ module TrailsHelper
 
   def display_hiked_before(current_user)
     if @trail.users.include?(current_user)
-      "Marked as Hiked"
+      "Hiked"
     end
   end
 

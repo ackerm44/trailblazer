@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:edit, :update, :destroy]
-  #only the creator of an answer can edit, update, destroy
 
   def index
     @question = Question.find(params[:id])

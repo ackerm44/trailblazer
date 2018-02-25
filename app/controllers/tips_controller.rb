@@ -15,20 +15,10 @@ class TipsController < ApplicationController
     render json: @tip, status: 201
   end
 
-  # def edit
-  # end
-  #
-  # def update
-  # end
-
   def destroy
     @tip.destroy
     redirect_to request.referer
   end
-
-  # def next
-  #
-  # end
 
   private
   def set_tip

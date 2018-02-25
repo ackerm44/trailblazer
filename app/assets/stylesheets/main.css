@@ -39,12 +39,18 @@ header {
 .welcome-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-column-gap: 10px;
+  grid-row-gap: 50px;
   text-align: center;
 }
 
 .welcome-grid h2 {
   font-size: 200%;
+}
+
+.welcome-grid #user-tips {
+  grid-column-start: 2;
+  grid-row-start: 2
 }
 
 a {
@@ -99,4 +105,17 @@ footer p {
 
 .answers {
 margin-left: 40px;
+}
+
+button {
+  width: 50%;
+  padding: 10px;
+  background-color: #619B4D;
+  color: white;
+  font-size: 110%;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

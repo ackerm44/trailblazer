@@ -1,9 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, :check_current_user, only: [:show, :edit, :update, :destroy]
 
-  # def index
-  # end
-
   def show
   end
 
@@ -14,7 +11,6 @@ class ListsController < ApplicationController
   end
 
   def create
-    # raise params.inspect
     @list = List.new(list_params)
     if @list.save
       redirect_to root_path
@@ -42,7 +38,6 @@ class ListsController < ApplicationController
   def check_current_user
     if current_user != @list.user
       redirect_to root_path
-      #Enter an error message????
     end
   end
 
