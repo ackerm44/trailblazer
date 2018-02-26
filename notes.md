@@ -2,8 +2,3 @@
   10. Fix api data on directions
   13. Mark questions/answers on welcome page as read?
   16. Put data somewhere about other users trail activity
-
-
-Requirements
-4. Walk thru video
-5. Blog
