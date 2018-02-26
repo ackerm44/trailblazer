@@ -29,13 +29,16 @@
     <h2>Answers to your Questions</h2>
     <br>
     <% questions_with_answers(current_user).each do |question| %>
-      <h4><%= question.title %></h4>
+      <h3><%= question.title %></h3>
+      <p>Regarding: <%= link_to question.trail.name, trail_path(question.trail) %></p>
       <ul>
+        <h4>Answers: </h4>
         <% question.answers.each do |answer| %>
           <li>
             <%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %>
           </li>
         <% end %>
+        <p>---------------------</p>
       </ul>
     <% end %>
   </div>
