@@ -48,11 +48,8 @@ function questionFormSubmit(form) {
 
 function answerFormSubmit(form) {
   let answerValues = $(form).serialize();
-  console.log(answerValues)
-  console.log($(form).attr("action"))
   let answerPosting = $.post(`${$(form).attr("action")}.json`, answerValues);
   answerPosting.done(function(data) {
-    console.log(data)
     $(`#question-answer-${data.question_id}`).append(`${data.title} - ${data.user.username}`)
   });
 }

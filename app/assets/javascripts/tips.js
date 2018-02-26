@@ -13,11 +13,6 @@ function attachTipListeners() {
       });
     });
   });
-  // $(document).on('click', "#user-tip-delete", function(e) {
-  //   e.preventDefault;
-  //   console.log('Here');
-  //   $("#user-tip-delete").remove();
-  // })
 }
 
 
@@ -30,7 +25,7 @@ function Tip(data) {
 Tip.prototype.formatIndex = function() {
   let tipHtml = `
   <li>
-  ${this.comment} <br>
+  ${this.comment} <br><br>
   Regarding: <a href="/trails/${this.trail_id}">${this.trail_name}</a>
   </li>
   `
