@@ -1,6 +1,7 @@
 class TipsController < ApplicationController
   #only the creating user can edit, update, destory tip
   before_action :set_tip, :check_current_user, only: [:destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @tips = current_user.tips

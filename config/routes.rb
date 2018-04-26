@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
-  root to: 'welcome#index'
   get '/questions/:id/next', to: "questions#next"
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  authenticated :user do
+    root 'welcome#show', as: :authenticated_root
+  end
+
+  root to: 'welcome#index'
 
   resources :trails, :tips
   resources :lists, only: [:show, :new, :create, :edit, :update, :destroy]

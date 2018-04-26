@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   #only the creator of a questions can edit, update, destory
   before_action :set_question, only: [:show, :edit, :update, :destroy, :next]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @questions = Question.all

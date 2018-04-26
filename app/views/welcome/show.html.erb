@@ -1,0 +1,50 @@
+<h1 id="welcome">Welcome, <%= current_user.username %>.</h1>
+<hr>
+<div class="welcome-grid">
+  <div class="user-lists">
+    <h2>Your Lists</h2>
+    <br>
+    <% current_user.lists.each do |list| %>
+      <h3><%= link_to list.name, list_path(list) %></h3>
+      <h4><%= list.description %></h4>
+      <br>
+    <% end %>
+    <br>
+
+    <%= link_to "Create a new List", new_list_path, :id => "new-list" %><br>
+  </div>
+
+  <div class="user-past-hikes">
+    <h2>Past Hikes</h2>
+    <br>
+    <ul>
+    <% current_user.trails.each do |trail| %>
+      <li><%= link_to trail.name, trail_path(trail) %></li>
+    <% end %>
+    </ul>
+  </div>
+
+
+  <div class="user-questions-and-tips">
+    <h2>Answers to your Questions</h2>
+    <br>
+    <% questions_with_answers(current_user).each do |question| %>
+      <h3><%= question.title %></h3>
+      <p>Regarding: <%= link_to question.trail.name, trail_path(question.trail) %></p>
+      <ul>
+        <h4>Answers: </h4>
+        <% question.answers.each do |answer| %>
+          <li>
+            <%= link_to answer.title, trail_path(question.trail_id, anchor: "questions")  %>
+          </li>
+        <% end %>
+        <p>---------------------</p>
+      </ul>
+    <% end %>
+  </div>
+
+  <div id="user-tips">
+    <button id="get-user-tips">Show Tips You've Written</button>
+  </div>
+
+</div>
