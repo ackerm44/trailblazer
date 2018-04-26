@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .wrapper {
@@ -29,6 +29,53 @@ header {
   color: white;
 }
 
+.welcome-page {
+  background-image: url('header.jpg');
+}
+
+.welcome-page {
+  /* position: relative; */
+  background: #dcdddb;
+  /* overflow: hidden; */
+}
+
+.welcome-page:before {
+  content : " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity : 0.2;
+  z-index: -1;
+  background-image: url('header.jpg');
+}
+
+
+.welcome-header {
+  text-align: center;
+  font-size: 150%;
+  color: #3e5626;
+}
+
+.welcome-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  margin-top: 30px;
+}
+
+/* .welcome-buttons button {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+} */
+
+#welcome-first-button {
+  grid-column: 2 / 3;
+}
+
 #welcome {
   text-align: right;
   font-family: 'Kaushan Script', cursive;
@@ -52,6 +99,15 @@ header {
   grid-column-start: 2;
   grid-row-start: 2
 }
+
+.welcomeImages {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+}
+
 
 a {
   text-decoration: none;
@@ -107,10 +163,10 @@ footer p {
 margin-left: 40px;
 }
 
-button {
-  width: 50%;
+button, .welcome-buttons button {
+  width: 100%;
   padding: 10px;
-  background-color: #619B4D;
+  background-color: #3e5626;
   color: white;
   font-size: 110%;
   border-radius: 5px;

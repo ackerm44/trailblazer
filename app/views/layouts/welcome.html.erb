@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trailblazer</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  </head>
+
+  <body class="welcome-page">
+    <div class="welcome-header">
+      <h1 >Michigan Trailblazer</h1>
+      <h4><em>A hiking trail tracker to track the trails you've trekked</em></h4>
+      <hr>
+    </div>
+    <div class= "wrapper">
+      <%= yield %>
+    </div>
+  </body>
+  <hr>
+  <footer>
+    <p>Amanda Ackerman · 2018</p>
+  </footer>
+</html>

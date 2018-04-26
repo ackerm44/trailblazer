@@ -10,14 +10,16 @@
 
     <p id="question-answer-<%= question.id %>"</p>
 
-    <div class="centerize" id="answer">
-      <%= form_tag question_answers_path(question), :id => 'answer-form' do %>
-        <%= text_field_tag "answer[title]" %><br>
-        <%= hidden_field_tag "answer[user_id]", current_user.id %>
-        <%= hidden_field_tag "answer[question_id]", question.id %>
-        <%= submit_tag "Submit Answer" %>
-      <% end %>
-    </div>
+    <% if current_user %>
+      <div class="centerize" id="answer">
+        <%= form_tag question_answers_path(question), :id => 'answer-form' do %>
+          <%= text_field_tag "answer[title]" %><br>
+          <%= hidden_field_tag "answer[user_id]", current_user.id %>
+          <%= hidden_field_tag "answer[question_id]", question.id %>
+          <%= submit_tag "Submit Answer" %>
+        <% end %>
+      </div>
+    <% end %>
 
   <% end %>
 
@@ -26,11 +28,13 @@
 
 <br><br>
 
-<div class="centerize">
-  <%= form_tag questions_path,:id => 'question-form' do %>
-    <%= text_field_tag 'question[title]' %><br>
-    <%= hidden_field_tag 'question[user_id]', current_user.id %>
-    <%= hidden_field_tag 'question[trail_id]', @trail.id %>
-    <%= submit_tag "Ask Question" %>
-  <% end %>
-</div>
+<% if current_user %>
+  <div class="centerize">
+    <%= form_tag questions_path,:id => 'question-form' do %>
+      <%= text_field_tag 'question[title]' %><br>
+      <%= hidden_field_tag 'question[user_id]', current_user.id %>
+      <%= hidden_field_tag 'question[trail_id]', @trail.id %>
+      <%= submit_tag "Ask Question" %>
+    <% end %>
+  </div>
+<% end %>

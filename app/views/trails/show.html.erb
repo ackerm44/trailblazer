@@ -15,7 +15,7 @@
 
   <!-- Either mark the trail as hiked or show text saying Hiked  -->
   <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
-    <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
+    <%= hidden_field_tag 'trail[user_ids]', current_user.id if current_user %>
     <div class="centerize">
       <%= submit_tag "Mark as Hiked" %>
     </div>
@@ -37,9 +37,11 @@
 <hr>
 
 <!-- Add trail to List -->
-<h4>Add Trail to a List</h4>
-<%= form_for @trail do |f| %>
-  <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
-  <%= f.submit "Save to List" %>
+<% if current_user %>
+  <h4>Add Trail to a List</h4>
+  <%= form_for @trail do |f| %>
+    <%= f.collection_select :list_ids, current_user.lists, :id, :name, :prompt => true %>
+    <%= f.submit "Save to List" %>
+  <% end %>
+  <hr>
 <% end %>
-<hr>

@@ -13,8 +13,8 @@ class TrailsController < ApplicationController
   end
 
   def show
-    @lists = current_user.lists
-    @user = current_user.username
+    @lists = current_user.lists if current_user
+    @user = current_user.username if current_user
   end
 
   def new
