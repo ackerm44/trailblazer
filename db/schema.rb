@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180427182533) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
     t.string "title"
     t.integer "question_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema.define(version: 20180427182533) do
   end
 
   create_table "lists_trails", id: false, force: :cascade do |t|
-    t.integer "list_id"
-    t.integer "trail_id"
+    t.bigint "list_id"
+    t.bigint "trail_id"
     t.index ["list_id"], name: "index_lists_trails_on_list_id"
     t.index ["trail_id"], name: "index_lists_trails_on_trail_id"
   end
@@ -76,8 +79,8 @@ ActiveRecord::Schema.define(version: 20180427182533) do
   end
 
   create_table "trails_users", id: false, force: :cascade do |t|
-    t.integer "trail_id"
-    t.integer "user_id"
+    t.bigint "trail_id"
+    t.bigint "user_id"
     t.index ["trail_id"], name: "index_trails_users_on_trail_id"
     t.index ["user_id"], name: "index_trails_users_on_user_id"
   end
