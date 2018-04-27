@@ -1,8 +1,8 @@
 <nav>
-  <%= link_to_unless_current("Home", { controller: "welcome", action: "index" }) %>
-  <%= link_to_unless_current("Trails", { controller: "trails", action: "index" }) %>
-  <%= link_to_unless_current("Submit Trail", { controller: "trails", action: "new" }) %>
-  <%= link_to_unless_current("Questions", { controller: "questions", action: "index" }) %>
-  <%= link_to_unless_current("About", {controller: "static", action: "about"}) %>
-  <%= link_to "Log Out", destroy_user_session_path, :method => 'delete' %>
+  <%= link_to "Home", root_path %>
+  <%= link_to "Trails", trails_path %>
+  <%= link_to "Submit Trail", new_trail_path %>
+  <%= link_to "Questions", questions_path %>
+  <%= link_to "About", about_path %>
+  <%= link_to "Log Out", new_user_session_path %>
 </nav>

@@ -18,13 +18,6 @@ class Trail < ApplicationRecord
     self.select {|t| t.nearest_city.downcase.include?(city_query)}
   end
 
-  # def alphabetical_next
-  #   trails_in_region = Trail.where("region_id = ?", self.region_id)
-  #   sort_alphabetically = trails_in_region.order(:name)
-  #   next_record = sort_alphabetically.index(self) + 1
-  #   sort_alphabetically[next_record]
-  # end
-
   def assign_region
     if self.longitude < -87
       self.region = Region.find(5)
