@@ -3,5 +3,6 @@
   <%= link_to_unless_current("Trails", { controller: "trails", action: "index" }) %>
   <%= link_to_unless_current("Submit Trail", { controller: "trails", action: "new" }) %>
   <%= link_to_unless_current("Questions", { controller: "questions", action: "index" }) %>
+  <%= link_to_unless_current("About", {controller: "static", action: "about"}) %>
   <%= link_to "Log Out", destroy_user_session_path, :method => 'delete' %>
 </nav>
