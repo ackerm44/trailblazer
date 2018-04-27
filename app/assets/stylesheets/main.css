@@ -7,8 +7,8 @@ body {
 }
 
 nav {
-  padding: 25px;
-  background-color: #619B4D;
+  padding: 15px;
+  background-color: #3e5626;
   font-size: 135%;
   letter-spacing: 3px;
 
@@ -64,9 +64,13 @@ header {
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 10px;
   margin-top: 30px;
+  padding: 5px;
+  font-size: 150%;
+  text-align: center;
+  background-color: #dee2de;
 }
 
-/* .welcome-buttons button {
+/* .welcome-buttons a {
   margin-top: 30px;
   width: 100%;
   text-align: center;
@@ -79,7 +83,7 @@ header {
 #welcome {
   text-align: right;
   font-family: 'Kaushan Script', cursive;
-  color: #619B4D;
+  color: #3e5626;
 
 }
 
@@ -111,7 +115,7 @@ header {
 
 a {
   text-decoration: none;
-  color: #619B4D;
+  color: #3e5626;
 }
 
 a:hover {
@@ -119,9 +123,10 @@ a:hover {
 }
 
 #new-list {
-  background-color: #CECECE;
+  background-color: #3e5626;
   padding: 10px;
-  color: #619B4D;
+  color: white;
+  border-radius: 5px; 
 }
 
 #new-list:hover {
@@ -143,7 +148,7 @@ footer p {
 
 #trail-info h2 {
   font-size: 50px;
-  color: #619B4D;
+  color: #3e5626;
   margin-bottom: -5px;
 }
 
@@ -156,15 +161,15 @@ footer p {
 }
 
 #tips h2, #questions h2  {
-  color: #619B4D;
+  color: #3e5626;
 }
 
 .answers {
 margin-left: 40px;
 }
 
-button, .welcome-buttons button {
-  width: 100%;
+button {
+  width: 20%;
   padding: 10px;
   background-color: #3e5626;
   color: white;
