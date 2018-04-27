@@ -1,8 +1,8 @@
 <h1 id="welcome">Welcome, <%= current_user.username %>.</h1>
-<hr>
 <div class="welcome-grid">
   <div class="user-lists">
     <h2>Your Lists</h2>
+    <hr>
     <br>
     <% current_user.lists.each do |list| %>
       <h3><%= link_to list.name, list_path(list) %></h3>
@@ -16,6 +16,7 @@
 
   <div class="user-past-hikes">
     <h2>Past Hikes</h2>
+    <hr>
     <br>
     <ul>
     <% current_user.trails.each do |trail| %>
@@ -27,6 +28,7 @@
 
   <div class="user-questions-and-tips">
     <h2>Answers to your Questions</h2>
+    <hr>
     <br>
     <% questions_with_answers(current_user).each do |question| %>
       <h3><%= question.title %></h3>

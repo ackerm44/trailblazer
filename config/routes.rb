@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/questions/:id/next', to: "questions#next"
+  get '/about', to: "static#about"
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 

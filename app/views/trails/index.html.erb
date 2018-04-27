@@ -12,12 +12,18 @@
   <%= submit_tag "Search" %>
 <% end %>
 <br>
+
 <% if @trails %>
-  <% @trails.each do |trail| %>
-    <%= link_to trail.name, trail_path(trail) %> ·
-  <% end %>
+  <div class="search-results">
+    <strong>Search Results </strong><br><br>
+    <% @trails.each do |trail| %>
+      <%= link_to trail.name, trail_path(trail) %> ·
+    <% end %>
+  </div>
 <% end %>
+
 <hr>
+
 <% @regions.each do |region| %>
   <div class="region-header">
     <h2 id="region-<%=region.id %>" ><%= region.name %></h2>
