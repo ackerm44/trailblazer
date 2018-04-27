@@ -36,6 +36,7 @@ gem 'omniauth-facebook'
 gem 'faraday'
 gem 'jquery-rails'
 gem 'cancancan', '~> 2.0'
+gem 'rails_12factor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
