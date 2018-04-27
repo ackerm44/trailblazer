@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222153218) do
+ActiveRecord::Schema.define(version: 20180427182533) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20180222153218) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "photo"
   end
 
   create_table "trails_users", id: false, force: :cascade do |t|

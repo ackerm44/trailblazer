@@ -1,16 +1,21 @@
+<h4 id="trail-title"><%= @trail.name %></h4>
 <div id = "trail-info">
-  <h2><%= @trail.name %></h2>
-  <!-- Submitted by  -->
-  <p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
+  <div id= "trail-info-data">
+    <!-- Submitted by  -->
+    <p><em>This trail was submitted by: <%= submitting_user(@trail) %></em><p>
 
-  <!-- STAYS: Trail Display Information  -->
-  <span><a>Nearest City: </a><b><%= @trail.nearest_city %></b></span><br><br>
-  <span><a>Directions: </a><b><%= @trail.directions %></b></span><br><br>
-  <span><a>Trail length: </a><b><%= @trail.distance %></b></span><br><br>
-  <span><a>Description: </a><b><%= @trail.description %></b></span><br><br>
-  <span><a>Dog Friendly: </a><b><%= display_dog_friendly(@trail) %></a></span><br><br>
-  <%= user_trail_edit(current_user, @trail) %>
-  <%= user_trail_delete(current_user, @trail) %>
+    <!-- STAYS: Trail Display Information  -->
+    <span><a>Nearest City: </a><b><%= @trail.nearest_city %></b></span><br><br>
+    <span><a>Directions: </a><b><%= @trail.directions %></b></span><br><br>
+    <span><a>Trail length: </a><b><%= @trail.distance %></b></span><br><br>
+    <span><a>Description: </a><b><%= @trail.description %></b></span><br><br>
+    <span><a>Dog Friendly: </a><b><%= display_dog_friendly(@trail) %></a></span><br><br>
+    <%= user_trail_edit(current_user, @trail) %>
+    <%= user_trail_delete(current_user, @trail) %>
+  </div>
+  <div>
+    <%= image_tag @trail.photo, height: "300px" %>
+  </div>
 </div>
 
   <!-- Either mark the trail as hiked or show text saying Hiked  -->

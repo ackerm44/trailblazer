@@ -43,9 +43,16 @@ class Trail < ApplicationRecord
     end
     body_hash = JSON.parse(@resp.body)
     trails = body_hash["places"]
-    @trails = trails.map {|trail| Trail.new(name: trail['name'], nearest_city: trail['city'], description: trail['activities'][0]['description'], distance: trail['activities'][0]['length'], directions: trail['directions'], latitude: trail['lat'], longitude: trail['lon'], user_submitted: false, )}
+    @trails = trails.map {|trail| Trail.new(name: trail['name'], nearest_city: trail['city'],
+      description: trail['activities'][0]['description'], distance: trail['activities'][0]['length'],
+      directions: trail['directions'], latitude: trail['lat'], longitude: trail['lon'],
+      photo: trail['activities'][0]['thumbnail'], user_submitted: false, )
+    }
     @trails.each do |trail|
       trail.assign_region
+      if trail.photo.nil?
+        trail.update(photo: 'wildflowers.jpg')
+      end
       if trail.valid?
         trail.save
       end
