@@ -19,13 +19,15 @@
 </div>
 
   <!-- Either mark the trail as hiked or show text saying Hiked  -->
-  <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
-    <%= hidden_field_tag 'trail[user_ids]', current_user.id if current_user %>
-    <div class="centerize">
-      <%= submit_tag "Mark as Hiked" %>
-    </div>
+  <% if current_user %>
+    <%= form_tag trail_path(@trail), :method => :patch, :id => 'hiked-before-form' do %>
+      <%= hidden_field_tag 'trail[user_ids]', current_user.id %>
+      <div class="centerize">
+        <%= submit_tag "Mark as Hiked" %>
+      </div>
+    <% end %>
+    <h2 class="centerize" id="hiked-before-display"><%= display_hiked_before(current_user) %></h2>
   <% end %>
-  <h2 class="centerize" id="hiked-before-display"><%= display_hiked_before(current_user) %></h2>
 <hr>
 <!-- Tips indexing and new tip form  -->
 <div id="tips" >
